@@ -18,7 +18,7 @@
 #
 # 你不需要考虑数组中超出新长度后面的元素。
 
-def removeDuplicates2(self, nums):
+def removeDuplicates2( nums):
     """
     :type nums: List[int]
     :rtype: int
@@ -32,3 +32,5 @@ def removeDuplicates2(self, nums):
             i += 1
         #出现三次及以上，不再覆盖，往后走
     return i
+
+print(removeDuplicates2(nums = [0,0,0,1,1,1,2,2,3,3,4]))
