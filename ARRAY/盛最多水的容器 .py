@@ -23,3 +23,6 @@ def MAXAREA(height):
         else:
             r = r - 1
     return maxarea
+
+#执行
+print(MAXAREA([1,8,6,2,5,4,8,3,7]))

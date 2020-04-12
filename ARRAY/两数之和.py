@@ -9,4 +9,5 @@ def twosum(nums,target):
             res[target-nums[i]] = nums[i]
     return res
 
+#执行
 print(twosum([2,7,11,15],9))
