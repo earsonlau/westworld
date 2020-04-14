@@ -31,9 +31,9 @@ class Solution:
             digits[i]+=1
             digits[i] = digits[i] % 10
             if digits[i] != 0: return digits #只要有一位不为0，就直接返回
-        digits = np.zeros[len(digits) + 1]
+        digits = np.zeros(len(digits) + 1)
         digits[0] = 1
         return digits
 
 a = Solution()
-print(a.plusOne([1,2,3]))
+print(a.plusOne([9,9,9]))
