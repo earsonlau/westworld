@@ -22,22 +22,22 @@ from typing import List
 # 思路:
 # 思路一: 库函数
 
-class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
-        res = []
-        for i in range(len(nums) + 1):
-            for tmp in itertools.combinations(nums, i):
-                res.append(tmp)
-        return res
-
-# 思路二: 迭代
-
-class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
-        res = [[]]
-        for i in nums:
-            res = res + [[i] + num for num in res]
-        return res
+# class Solution:
+#     def subsets(self, nums: List[int]) -> List[List[int]]:
+#         res = []
+#         for i in range(len(nums) + 1):
+#             for tmp in itertools.combinations(nums, i):#返回nums长度为i的子集
+#                 res.append(tmp)
+#         return res
+#
+# # 思路二: 迭代
+#
+# class Solution:
+#     def subsets(self, nums: List[int]) -> List[List[int]]:
+#         res = [[]]
+#         for i in nums:
+#             res = res + [[i] + num for num in res]
+#         return res
 
 # 思路三: 递归(回溯算法)
 
@@ -46,8 +46,15 @@ class Solution:
         res = []
         n = len(nums)
         def helper(i, tmp):
+            print("i:",i)
+            print("tmp:",tmp)
             res.append(tmp)
+            print("res:",res)
             for j in range(i, n):
+                print("j:",j)
                 helper(j + 1, tmp + [nums[j]])
+            print("到底了，撤！")
         helper(0, [])
         return res
+
+print(Solution().subsets([2,3,4,5]))
