@@ -34,3 +34,23 @@
 #      * @param n
 #      * @return
 #      */
+
+def countAndSay(n):
+    string = "1" # 设置初始值
+    for i in range(2,n+1): # 2到n遍历
+        builder = "" #设置初始值
+        pre = string[0]#取string第0个元素
+        count = 1 #计数
+        for j in range(1,len(string)):#描述string
+            c = string[j] #描述第j个元素
+            if c == pre: #第j个元素是重复出现的
+                count += 1 #重复出现
+            else: #第j个元素是重复出现的
+                builder = builder + str(count) + pre #描述一下几个几
+                pre = c #赋值给pre
+                count = 1 #计数为 1
+        builder = builder + str(count) + pre #描述一下几个几
+        string = builder #把这次数数的结果塞进string里面
+    return string
+
+print(countAndSay(5))
