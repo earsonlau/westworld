@@ -11,6 +11,7 @@
 # 输入: "race a car"
 # 输出: false
 
+#双指针，一个从前到后遍历，一个从后到前遍历
 def verifypa(s):
     left = 0
     right = len(s) - 1
