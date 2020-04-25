@@ -11,6 +11,22 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[118]杨辉三角.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[118]杨辉三角.py" />
+              <option name="questionId" value="118" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[11]盛最多水的容器.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[11]盛最多水的容器.py" />
+              <option name="questionId" value="11" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[121]买卖股票的最佳时机.py">
           <value>
             <LeetcodeEditor>
@@ -51,6 +67,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[16]最接近的三数之和.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[16]最接近的三数之和.py" />
+              <option name="questionId" value="16" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[18]四数之和.py">
           <value>
             <LeetcodeEditor>
@@ -67,6 +91,22 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[27]移除元素.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[27]移除元素.py" />
+              <option name="questionId" value="27" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[33]搜索旋转排序数组.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[33]搜索旋转排序数组.py" />
+              <option name="questionId" value="33" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[34]在排序数组中查找元素的第一个和最后一个位置.py">
           <value>
             <LeetcodeEditor>
@@ -80,6 +120,22 @@
             <LeetcodeEditor>
               <option name="path" value="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[35]搜索插入位置.py" />
               <option name="questionId" value="35" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[39]组合总和.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[39]组合总和.py" />
+              <option name="questionId" value="39" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[85]最大矩形.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$USER_HOME$/AppData/Local/Temp/leetcode/editor/cn/[85]最大矩形.py" />
+              <option name="questionId" value="85" />
             </LeetcodeEditor>
           </value>
         </entry>

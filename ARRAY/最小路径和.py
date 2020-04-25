@@ -14,14 +14,12 @@
 # 解释: 因为路径 1→3→1→1→1 的总和最小。
 
 # 动态规划
-
-
 class Solution:
     def minPathSum(self, grid: [[int]]) -> int:
         for i in range(len(grid)):
             for j in range(len(grid[0])):
                 if i == j == 0: continue
-                elif i == 0:  grid[i][j] = grid[i][j - 1] + grid[i][j]
-                elif j == 0:  grid[i][j] = grid[i - 1][j] + grid[i][j]
-                else: grid[i][j] = min(grid[i - 1][j], grid[i][j - 1]) + grid[i][j]
+                elif i == 0:  grid[i][j] = grid[i][j - 1] + grid[i][j]#从第一行往右走的状态转移方程(因为没有grid[i-1])
+                elif j == 0:  grid[i][j] = grid[i - 1][j] + grid[i][j]#从第一列往下走状态转移方程(因为没有grid[j-1])
+                else: grid[i][j] = min(grid[i - 1][j], grid[i][j - 1]) + grid[i][j]#不在第一行也不在第一列的情况
         return grid[-1][-1]

@@ -27,6 +27,8 @@
 #
 #  Related Topics 数组 二分查找
 
+
+#二分就完事了~
 class Solution:
     def searchInsert(self,nums, target) :
         left = 0
