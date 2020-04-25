@@ -1,3 +1,6 @@
+
+
+
 class Solution(object):
     def searchRange(self, nums, target):
         return [self.left_bound(nums,target), self.right_bound(nums,target)]

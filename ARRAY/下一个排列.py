@@ -23,8 +23,8 @@ def reverse(nums, start):
     j = len(nums) - 1
     #先把nums存下来，不一定会进入while
     res = nums
-    print("i=",i,",j=",j)
     while (i < j):
+        print("执行反转")
         res = swap(nums, i, j)
         print("res=",res)
         i += 1
@@ -35,6 +35,7 @@ def nextPermutation(nums):
     i = len(nums) -2
     while( i >= 0 & nums[i] >= nums[i+1]):#从右侧扫描数字,找到升序排列的两个数
         i-=1
+    print("i:",i)
     # 此时，i是左边那个较小数的index，i+1是右边那个较大数的index
     if( i >= 0):
         j =len(nums) - 1
@@ -47,4 +48,3 @@ def nextPermutation(nums):
     return reverse(res,i+1)
 
 print(nextPermutation([1,2,3]))
-

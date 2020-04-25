@@ -27,10 +27,10 @@
 import numpy as np
 class Solution:
     def plusOne(self,digits):
-        for i in range(len(digits)- 1,-1,-1):
-            digits[i]+=1
+        for i in range(len(digits)- 1,-1,-1):#从后往前遍历
+            digits[i] += 1
             digits[i] = digits[i] % 10
-            if digits[i] != 0: return digits #只要有一位不为0，就直接返回
+            if digits[i] != 0: return digits #只要有一位不为0(没有出现进位)，就直接返回
         digits = np.zeros(len(digits) + 1)
         digits[0] = 1
         return digits

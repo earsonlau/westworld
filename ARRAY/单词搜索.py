@@ -32,16 +32,16 @@ class Solution:
     # (x,y-1) (x,y) (x,y+1)
     #         (x+1,y)
 
-    directions = [(0, -1), (-1, 0), (0, 1), (1, 0)]
+    directions = [(0, -1), (-1, 0), (0, 1), (1, 0)]#左,上,下,右
     def exist(self, board: List[List[str]], word: str) -> bool:
         m = len(board)
         if m == 0:
             return False
         n = len(board[0])
-        marked = [[False for _ in range(n)] for _ in range(m)]
+        marked = [[False for _ in range(n)] for _ in range(m)]#一个m*n的二维数组
         for i in range(m):
             for j in range(n):
-                # 对每一个格子都从头开始搜索
+                # 对每一个格子都从word的第一个字母开始搜索
                 if self.__search_word(board, word, 0, i, j, marked, m, n):
                     return True
         return False
@@ -56,7 +56,7 @@ class Solution:
         if board[start_x][start_y] == word[index]:
             # 先占住这个位置，搜索不成功的话，要释放掉
             marked[start_x][start_y] = True
-            for direction in self.directions:
+            for direction in self.directions:# 分别从左,上,下,右四个方向进行搜索
                 new_x = start_x + direction[0]
                 new_y = start_y + direction[1]
                 # 注意：如果这一次 search word 成功的话，就返回

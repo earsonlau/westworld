@@ -28,14 +28,15 @@ def buildTreeHelper(preorder,  p_start,  p_end, inorder,  i_start,  i_end):
     # // preorder 为空，直接返回 null
     if p_start == p_end:
         return None
-    root_val = preorder[p_start]
+    root_val = preorder[p_start]#根节点是前序遍历的第一个节点
     root = TreeNode(root_val)
     # //在中序遍历中找到根节点的位置
-    i_root_index = 0
-    for i in range(i_start, i_end):
-        if root_val == inorder[i]:
-            i_root_index = i
-            break
+    #
+    i_root_index = inorder.index(root_val)#根节点索引
+    # for i in range(i_start, i_end):#
+    #     if root_val == inorder[i]:
+    #         i_root_index = i
+    #         break
     leftNum = i_root_index - i_start
     # //递归的构造左子树
     root.left = buildTreeHelper(preorder, p_start + 1, p_start + leftNum + 1, inorder, i_start, i_root_index);
@@ -61,7 +62,7 @@ def buildTreeHelper(preorder, p_start, p_end, inorder, i_start, i_end, map):
         return None
     root_val = preorder[p_start]
     root = TreeNode(root_val)
-    i_root_index = map[root_val]
+    i_root_index = map[root_val]#用哈希表查找根的索引
     leftNum = i_root_index - i_start
     root.left = buildTreeHelper(preorder, p_start + 1, p_start + leftNum + 1, inorder, i_start, i_root_index, map)
     root.right = buildTreeHelper(preorder, p_start + leftNum + 1, p_end, inorder, i_root_index + 1, i_end, map)

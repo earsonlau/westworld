@@ -34,6 +34,7 @@ class Solution:
                 len -= 1
                 len1 -= 1
         if len2 + 1 > 0:
+            # 当 len1<0 时遍历结束，此时 nums2 中还有数据未拷贝完全，将其直接拷贝到 nums1 的前面，最后得到结果数组
             nums1.insert(0,nums2[0:(len2+1)])
         return nums1
 print(Solution().merge([1,2,3,0,0,0],3,[2,5,6],3))
