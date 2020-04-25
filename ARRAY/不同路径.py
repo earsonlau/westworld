@@ -1,4 +1,3 @@
-
 # 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
 #
 # 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
@@ -29,20 +28,20 @@
 """
 
 import numpy as np
-# class Solution:
-#     def uniquePaths(self,m,n):
-#         dp = np.zeros([m,n],np.int)
-#         for i in range(n):#边界
-#             dp[0][i] = 1
-#         for i in range(n):#边界
-#             dp[i][0] = 1
-#         for i in range(m):
-#             for j in range(n):#从上面来有多少条路+从左边来有多少条路 = 到这里有多少条路
-#                 dp[i][j] = dp[i-1][j] + dp[i][j-1]
-#         return dp[m-1][n-1]
-#
-# a = Solution()
-# print(a.uniquePaths(3,2))
+class Solution:
+    def uniquePaths(self,m,n):
+        dp = np.zeros([m,n],np.int)
+        for i in range(n):#边界
+            dp[0][i] = 1
+        for i in range(n):#边界
+            dp[i][0] = 1
+        for i in range(m):
+            for j in range(n):#从上面来有多少条路+从左边来有多少条路 = 到这里有多少条路
+                dp[i][j] = dp[i-1][j] + dp[i][j-1]
+        return dp[m-1][n-1]
+
+a = Solution()
+print(a.uniquePaths(3,2))
 
 
 # 优化一：将一个表优化成了表中我们需要的两行
@@ -64,16 +63,16 @@ print(a.uniquePaths(3,2))
 
 # 优化二：在优化一的基础上，将两行优化成了我们需要的当前行，因为cur未更新前保存的结果是上一行的结果
 # #空间复杂度优化到O(n)
-# import numpy as np
-# class Solution:
-#     def uniquePaths(self,m,n):
-#         cur = np.ones(n,np.int)
-#         for i in range(1,m):
-#             for j in range(1,n):
+import numpy as np
+class Solution:
+    def uniquePaths(self,m,n):
+        cur = np.ones(n,np.int)
+        for i in range(1,m):
+            for j in range(1,n):
                   # 等号右边的cur[j]是上一行的第j个数据对应的步数,cur[j-1]是本行第j-1个数据对应的步数
-#                 # 等号右边的cur[j]是从上面来,等号右边的cur[j-1]是从左边来
-#                 cur[j] = cur[j] + cur[j-1]
-#         return cur[n-1]
+                # 等号右边的cur[j]是从上面来,等号右边的cur[j-1]是从左边来
+                cur[j] = cur[j] + cur[j-1]
+        return cur[n-1]
 
-# a = Solution()
-# print(a.uniquePaths(3,2))
+a = Solution()
+print(a.uniquePaths(3,2))
