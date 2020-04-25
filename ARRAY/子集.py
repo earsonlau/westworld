@@ -46,14 +46,15 @@ class Solution:
         res = []
         n = len(nums)
         def helper(i, tmp):
-            print("i:",i)
-            print("tmp:",tmp)
-            res.append(tmp)
+            print("调用helper,开始寻找子集")
+            res.append(tmp)#在结果中增加路径
             print("res:",res)
+            #遍历选择列表
             for j in range(i, n):
-                print("j:",j)
-                helper(j + 1, tmp + [nums[j]])
-            print("到底了，撤！")
+                #做选择(这里不需要)
+                helper(j + 1, tmp + [nums[j]])# 递归调用helper(路径,选择列表)
+                #撤销选择(这里不需要)
+            print("本次对helper的调用结束.")#本次对helper的调用结束
         helper(0, [])
         return res
 

@@ -16,18 +16,22 @@
 # # ]
 
 
-#递归
+#递归(回溯算法)
+from typing import List
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
         res = []
         n = len(nums)
         nums.sort()
         def helper(idx, tmp):
-            res.append(tmp)
+            res.append(tmp)#满足结束条件,结果集添加路径
             for i in range(idx, n):
+                #做选择
                 if i > idx and nums[i] == nums[i-1]:
                     continue
+                #helper(路径,选择列表)
                 helper(i+1, tmp + [nums[i]])
+                #撤销选择(这里没有)
         helper(0, [])
         return res
 

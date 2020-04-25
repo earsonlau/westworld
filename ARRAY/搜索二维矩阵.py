@@ -33,7 +33,7 @@ class Solution:
         n = len(matrix[0])
 
         #二分查找
-        left,right = 0, m * n -1
+        left,right = 0, m * n -1#直接把矩阵拍成一条,从前到后二分查找
         while (left <= right):
             pivot_idx = (left+right) // 2
             pivot_element = matrix[pivot_idx // n][pivot_idx % n ]#利用了矩阵的特性
