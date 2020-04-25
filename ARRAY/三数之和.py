@@ -1,6 +1,6 @@
+#给定一个nums数组，找三个数加起来=0的所有可能。
+
 from typing import List
-
-
 #排序+双指针
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:

@@ -1,4 +1,4 @@
-	int minDistance(String s1, String s2) {
+int minDistance(String s1, String s2) {
     int m = s1.length(), n = s2.length();
     int[][] dp = new int[m + 1][n + 1];
     // base case
