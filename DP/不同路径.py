@@ -18,54 +18,61 @@
 # 输入: m = 7, n = 3
 # 输出: 28
 
-#排列组合
-import math
-def uniquePaths(self, m: int, n: int) -> int:
-    return int(math.factorial(m + n - 2) / math.factorial(m - 1) / math.factorial(n - 1))
+"""
+思路：动态规划
+我们令dp[i][j]是到达坐标点i,j的最多路径
+动态方程：dp[i][j] = dp[i-1][j] + dp[i][j-1](要到(i,j)，要么从(i-1,j)往下走一格,要么从(i,j-1)往右走一格
+注意：对于第一行dp[0][j] 或者第一列dp[i][0] 由于都是在边界，所以只能为1
+时间复杂度O(m*n)
+空间复杂度O(m*n)
+"""
 
-    # 思路二：动态规划
-    #
-    # 我们令
-    # dp[i][j]
-    # 是到达
-    # i, j
-    # 最多路径
-    #
-    # 动态方程：dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
-    #
-    # 注意，对于第一行
-    # dp[0][j]，或者第一列
-    # dp[i][0]，由于都是在边界，所以只能为 1
-
-
+import numpy as np
 class Solution:
-    def uniquePaths(self, m: int, n: int) -> int:
-        dp = [[1]*n] + [[1]+[0] * (n-1) for _ in range(m-1)]
-        #print(dp)
-        for i in range(1, m):
-            for j in range(1, n):
+    def uniquePaths(self,m,n):
+        dp = np.zeros([m,n],np.int)
+        for i in range(n):#边界
+            dp[0][i] = 1
+        for i in range(n):#边界
+            dp[i][0] = 1
+        for i in range(m):
+            for j in range(n):#从上面来有多少条路+从左边来有多少条路 = 到这里有多少条路
                 dp[i][j] = dp[i-1][j] + dp[i][j-1]
-        return dp[-1][-1]
+        return dp[m-1][n-1]
 
-# 优化1 空间复杂度
+a = Solution()
+print(a.uniquePaths(3,2))
 
+
+# 优化一：将一个表优化成了表中我们需要的两行
+#空间复杂度优化到O(2n)
+import numpy as np
 class Solution:
-    def uniquePaths(self, m: int, n: int) -> int:
-        pre = [1] * n
-        cur = [1] * n
-        for i in range(1, m):
-            for j in range(1, n):
-                cur[j] = pre[j] + cur[j - 1]
-            pre = cur[:]
-        return pre[-1]
+    def uniquePaths(self,m,n):
+        pre = np.ones(n,np.int)# pre为长度n初始值均为1的数组
+        cur = np.ones(n,np.int)# cur为长度n初始值均为1的数组
+        for i in range(1,m):
+            for j in range(1,n):
+                #cur[j-1]是从左边来的,pre[j]是从上面来的
+                cur[j] = cur[j-1] + pre[j]
+            pre = cur.copy()
+        return pre[n-1]
 
-# 优化2 空间复杂度
+a = Solution()
+print(a.uniquePaths(3,2))
 
+# 优化二：在优化一的基础上，将两行优化成了我们需要的当前行，因为cur未更新前保存的结果是上一行的结果
+# #空间复杂度优化到O(n)
+import numpy as np
 class Solution:
-    def uniquePaths(self, m: int, n: int) -> int:
-        cur = [1] * n
-        for i in range(1, m):
-            for j in range(1, n):
-                cur[j] += cur[j - 1]
-        return cur[-1]
+    def uniquePaths(self,m,n):
+        cur = np.ones(n,np.int)
+        for i in range(1,m):
+            for j in range(1,n):
+                # 等号右边的cur[j]是上一行的第j个数据对应的步数,cur[j-1]是本行第j-1个数据对应的步数
+                # 等号右边的cur[j]是从上面来,等号右边的cur[j-1]是从左边来
+                cur[j] = cur[j] + cur[j-1]
+        return cur[n-1]
 
+a = Solution()
+print(a.uniquePaths(3,2))
