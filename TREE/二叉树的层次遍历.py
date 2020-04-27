@@ -1,4 +1,3 @@
-import queue
 # 给你一个二叉树，请你返回其按 层序遍历 得到的节点值。 （即逐层地，从左到右访问所有节点）。
 #
 # 示例：
@@ -17,7 +16,7 @@ import queue
 #   [15,7]
 # ]
 # 在访问过程中，我们只需要将同一层中的节点同时入队列即可。在将该queue中所有元素出队列的同时，将下一层的元素进队列，完成交接
-
+import queue
 class TreeNode:
     def __init__(self, x):
         self.val = x
