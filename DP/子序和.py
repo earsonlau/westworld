@@ -23,7 +23,7 @@ class Solution:
             currSum+=nums[i]
             leftSubsum = max(leftSubsum,currSum)
 
-        rightSubsum = float('inf')
+        rightSubsum = -float('inf')
         currSum = 0
         for i in range(p+1,right+1):
             currSum += nums[i]
@@ -32,8 +32,10 @@ class Solution:
         return leftSubsum + rightSubsum
 
     def helper(self,nums,left,right):
+        print("left:",left)
+        print("right:",right)
         if left == right: return nums[left]
-        p = (left + right) / 2
+        p = (left + right) // 2
         leftSum = self.helper(nums,left,p)
         rightSum = self.helper(nums,p+1,right)
         crossSum = self.crossSum(nums,left,right,p)
@@ -41,23 +43,25 @@ class Solution:
     def maxSubArray(self,nums):
         return self.helper(nums,0,len(nums) - 1 )
 
-#贪心
+nums = [-2,1,-3,4,-1,2,1,-5,4]
+print(Solution().maxSubArray(nums))
 
+
+#贪心
 class Solution:
     def maxSubArray(self,nums):
         n = len(nums)
         currSum = nums[0]
         maxSum = nums[0]
-
         for i in range(1,n):
             currSum = max(nums[i],currSum + nums[i])
             maxSum = max(maxSum,currSum)
-
         return maxSum
 
+nums = [-2,1,-3,4,-1,2,1,-5,4]
+print(Solution().maxSubArray(nums))
 
 #动态规划
-
 class Solution:
     def maxSubArray(self, nums: 'List[int]') -> 'int':
         n = len(nums)
