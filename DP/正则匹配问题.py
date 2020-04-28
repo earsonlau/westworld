@@ -58,6 +58,73 @@
 # 输出: false
 #  Related Topics 字符串 动态规划 回溯算法
 
+#回溯
+# 首先，我们考虑只有 '.' 的情况。这种情况会很简单：我们只需要从左到右依次判断 s[i] 和 p[i] 是否匹配。
+#
+# def isMatch(self,s:str, p:str) -> bool:
+#     if not p: return not s # 边界条件
+#
+#     first_match = s and p[0] in {s[0],'.'} # 比较第一个字符是否匹配
+#
+#     return first_match and self.isMatch(s[1:], p[1:])
+# 如果有星号，它会出现在 p[1] 的位置，这时有两种情况：
+#
+# 星号代表匹配 0 个前面的元素。如 '##' 和 a*##，这时我们直接忽略 p 的 a*，比较 ## 和 ##；
+# 星号代表匹配一个或多个前面的元素。如 aaab 和 a*b，这时我们将忽略 s 的第一个元素，比较 aab 和 a*b。
+# 以上任一情况忽略掉元素进行比较时，剩下的如果匹配，我们认为 s 和 p 是匹配的。
+#
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        if not p: return not s
+        # 第一个字母是否匹配
+        first_match = bool(s and p[0] in {s[0],'.'})
+        # 如果 p 第二个字母是 *
+        if len(p) >= 2 and p[1] == "*":
+            return self.isMatch(s, p[2:]) or \
+            first_match and self.isMatch(s[1:], p)
+        else:
+            return first_match and self.isMatch(s[1:], p[1:])
+
+
+
+
+#DP
+# 状态转移方程见
+# https://leetcode-cn.com/problems/regular-expression-matching/solution/hui-su-he-dong-tai-gui-hua-by-ml-zimingmeng/
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        # 边界条件，考虑 s 或 p 分别为空的情况
+        if not p: return not s
+        if not s and len(p) == 1: return False
+
+        m, n = len(s) + 1, len(p) + 1
+        dp = [[False for _ in range(n)] for _ in range(m)]
+        # 初始状态
+        dp[0][0] = True
+        dp[0][1] = False
+
+        for c in range(2, n):
+            j = c - 1
+            if p[j] == '*':
+                dp[0][c] = dp[0][c - 2]
+
+        for r in range(1, m):
+            i = r - 1
+            for c in range(1, n):
+                j = c - 1
+                if s[i] == p[j] or p[j] == '.':
+                    dp[r][c] = dp[r - 1][c - 1]
+                elif p[j] == '*':  # ‘*’前面的字符匹配s[i] 或者为'.'
+                    if p[j - 1] == s[i] or p[j - 1] == '.':
+                        dp[r][c] = dp[r - 1][c] or dp[r][c - 2]
+                    else:  # ‘*’匹配了0次前面的字符
+                        dp[r][c] = dp[r][c - 2]
+                else:
+                    dp[r][c] = False
+        return dp[m - 1][n - 1]
+
+
+
 
 # class Solution {
 # private String pattern;
@@ -113,3 +180,13 @@
 # return dp[i][j];
 # }
 # }
+
+
+
+
+
+
+
+
+
+

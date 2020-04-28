@@ -20,17 +20,29 @@
 # 寻找回文串的问题核心思想是：从中间开始向两边扩散来判断回文串。
 #
 
-# string palindrome(string s):
-#     string res;
-#     for(i=0; i<s.size();i++){
-#         //以 s[i] 为中心的回文串
-#         string s1 = palindrome(s,i,i);
-#         //以 s[i] 和 s[i+1] 为中心的回文串
-#         string s2 = palindrome(s,i,i+1);
-#         // res = longest(res,s1,s2)
-#         res = res.size() > s1.size() ? res : s1;
-#         res = res.size() > s2.size() ? res : s2;
-#     }
-#     return res;
-# }
+
+
+class Solution:
+    def palindrome_check(self,s,l,r):
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            l -= 1
+            r += 1
+        return s[l+1:r]
+    def palindrome(self, s):
+        if len(s) < 2 :
+            return s
+        res = s[0]
+        for i in range(len(s)):
+            # 以s[i]为中心的文本串
+            s1 = self.palindrome_check(s, i, i)
+            # 以 s[i]和 s[i+1]为中心的回文串
+            s2 = self.palindrome_check(s,i,i+1)
+            # res = longest(res,s1,s2)
+            res = res if(len(res) > len(s1)) else s1
+            res = res if(len(res) > len(s2)) else s2
+        return res
+
+ss = "cbbbbbbbbbbbd"
+print(Solution().palindrome(ss))
+
 
