@@ -9,69 +9,58 @@
 # 输入: 1->1->2->3->3
 # 输出: 1->2->3
 #
-# 双指针
-# class Solution {
-# public:
-#     ListNode* deleteDuplicates(ListNode* head) {
-#         if(head==NULL||head->next==NULL)
-#             return head;
-#         ListNode* p=head;//慢指针
-#         ListNode* q=head->next;//快指针
-#         while(p->next!=NULL)
-#         {
-#             if(p->val==q->val)//找到重复元素
-#             {
-#                 if(q->next==NULL)//快指针后面若没有元素直接剔除
-#                     p->next=NULL;
-#                 else//快指针后有元素
-#                 {
-#                     p->next=q->next;
-#                     q=q->next;
-#                 }
-#             }
-#             else //元素不相等
-#             {
-#                 p=p->next;
-#                 q=q->next;
-#             }
-#         }
-#         return head;
-#     }
-# };
+
+#双指针
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+class Solution:
+    def deleteDuplicates(self,head:ListNode):
+        if (head is None or head.next is None):
+            return head
+        p = head # 慢指针
+        q = head.next # 快指针
+        while p.next is not None:
+            if p.val == q.val: # 找到重复元素
+                if q.next is None: # 快指针后面如果没又元素直接删除
+                    p.next = None
+                else:# 快指针后有元素
+                    p.next = q.next
+                    q = q.next
+            else: #元素不相等
+                p = p.next
+                q = q.next
+        return head
 
 #直接法
-#
-# class Solution {
-# public:
-#     ListNode* deleteDuplicates(ListNode* head) {
-#         if(!head||!head->next)
-#             return head;
-#         ListNode* p=head;
-#         while(p->next!=NULL&&p!=NULL)
-#         {
-#             if(p->val == p->next->val)
-#             {
-#                 p->next=p->next->next;
-#             }
-#             else
-#                 p=p->next;
-#         }
-#         return head;
-#     }
-# };
+class Solution:
+    def deleteDuplicates(self,head: ListNode):
+        if (head is not None or head.next):
+            return head
+        p = head
+        while (p.next is not None and p is not None):
+            if (p.val == p.next.val):
+                p.next = p.next.next
+            else:
+                p = p.next
+        return head
+
 
 # 递归法
 
-# class Solution {
-# public:
-#     ListNode* deleteDuplicates(ListNode* head) {
-#         if(!head||!head->next)
-#             return head;
-#         head->next=deleteDuplicates(head->next);
-#         if(head->val==head->next->val) head=head->next;
-#         return head;
-#     }
-# };
+
+class Solution:
+    def deleteDuplicates(self,head):
+        if head is not None or head.next is not None:
+            return head
+        head.next = self.deleteDuplicates(head.next)
+        if head.val == head.next.val:
+            head = head.next
+        return head
+
+
 
 # 递归套路解决链表问题：
 # 找终止条件：当head指向链表只剩一个元素的时候，自然是不可能重复的，因此return

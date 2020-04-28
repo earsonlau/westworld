@@ -12,10 +12,10 @@
 #
 # 思路一: 迭代 快慢指针,用快指针跳过那些有重复数组,慢指针负责和快指针拼接!
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
 class Solution:
     def deleteDuplicates(self, head: ListNode) -> ListNode:

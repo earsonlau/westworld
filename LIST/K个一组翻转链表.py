@@ -56,3 +56,41 @@
 #     }
 #     return pre;
 # }
+
+class ListNode:
+    def __init__(self,x):
+        self.val = x
+        self.next = None
+class Solution:
+    def reverseGroup(self,head:ListNode, k:int):
+            dummy = ListNode(0)
+            dummy.next = head
+
+            pre = dummy
+            end = dummy
+
+            while (end.next != None):
+                if end is None: break
+                for i in range(k):
+                    end = end.next
+
+                start = pre.next
+                next = end.next
+                end.next = None
+                pre.next = self.reverse(start)
+                start.next = next
+                pre = start
+                end = pre
+            return dummy.next
+
+    def reverse(self,head:ListNode):
+        pre = None
+        curr = head
+        while (curr is not None):
+            next = curr.next
+            curr.next = pre
+            pre = curr
+            curr = next
+        return pre
+
+
