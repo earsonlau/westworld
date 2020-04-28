@@ -13,60 +13,51 @@
 #  如果你已经实现复杂度为 O(n) 的解法，尝试使用更为精妙的分治法求解。
 #  Related Topics 数组 分治算法 动态规划
 
-#分治算法
-# class Solution {
-#     public int crossSum(int[] nums, int left, int right, int p) {
-#     if (left == right) return nums[left];
-#
-#     int leftSubsum = Integer.MIN_VALUE;
-#     int currSum = 0;
-#     for(int i = p; i > left - 1; --i) {
-#       currSum += nums[i];
-#       leftSubsum = Math.max(leftSubsum, currSum);
-#     }
-#
-#     int rightSubsum = Integer.MIN_VALUE;
-#     currSum = 0;
-#     for(int i = p + 1; i < right + 1; ++i) {
-#       currSum += nums[i];
-#       rightSubsum = Math.max(rightSubsum, currSum);
-#     }
-#
-#     return leftSubsum + rightSubsum;
-#   }
-#
-#     public int helper(int[] nums, int left, int right) {
-#     if (left == right) return nums[left];
-#
-#     int p = (left + right) / 2;
-#
-#     int leftSum = helper(nums, left, p);
-#     int rightSum = helper(nums, p + 1, right);
-#     int crossSum = crossSum(nums, left, right, p);
-#
-#     return Math.max(Math.max(leftSum, rightSum), crossSum);
-#   }
-#
-#   public int maxSubArray(int[] nums) {
-#     return helper(nums, 0, nums.length - 1);
-#   }
-# }
+#分治算法 in Python
+class Solution:
+    def crossSum(self,nums,left,right,p):
+        if left == right: return nums[left]
+        leftSubsum = -float('inf')
+        currSum = 0
+        for i in range (p,left-1,-1):
+            currSum+=nums[i]
+            leftSubsum = max(leftSubsum,currSum)
+
+        rightSubsum = float('inf')
+        currSum = 0
+        for i in range(p+1,right+1):
+            currSum += nums[i]
+            rightSubsum = max(rightSubsum,currSum)
+
+        return leftSubsum + rightSubsum
+
+    def helper(self,nums,left,right):
+        if left == right: return nums[left]
+        p = (left + right) / 2
+        leftSum = self.helper(nums,left,p)
+        rightSum = self.helper(nums,p+1,right)
+        crossSum = self.crossSum(nums,left,right,p)
+        return max(max(leftSum,rightSum),crossSum)
+    def maxSubArray(self,nums):
+        return self.helper(nums,0,len(nums) - 1 )
 
 #贪心
-# class Solution {
-#   public int maxSubArray(int[] nums) {
-#     int n = nums.length;
-#     int currSum = nums[0], maxSum = nums[0];
-#
-#     for(int i = 1; i < n; ++i) {
-#       currSum = Math.max(nums[i], currSum + nums[i]);
-#       maxSum = Math.max(maxSum, currSum);
-#     }
-#     return maxSum;
-#   }
-# }
+
+class Solution:
+    def maxSubArray(self,nums):
+        n = len(nums)
+        currSum = nums[0]
+        maxSum = nums[0]
+
+        for i in range(1,n):
+            currSum = max(nums[i],currSum + nums[i])
+            maxSum = max(maxSum,currSum)
+
+        return maxSum
+
 
 #动态规划
+
 class Solution:
     def maxSubArray(self, nums: 'List[int]') -> 'int':
         n = len(nums)
