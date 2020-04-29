@@ -6,31 +6,34 @@
 # 输入: 1->2->2->1
 # 输出: true
 #
-# public boolean isPalindrome(ListNode head) {
-# if (head == null | | head.next == null)
-# {
-# return true;
-# }
-# ListNode
-# slow = head, fast = head;
-# ListNode
-# pre = head, prepre = null;
-# while (fast != null & & fast.next != null) {
-# pre = slow;
-# slow = slow.next;
-# fast = fast.next.next;
-# pre.next = prepre;
-# prepre = pre;
-# }
-# if (fast != null) {
-# slow = slow.next;
-# }
-# while (pre != null & & slow != null) {
-# if (pre.val != slow.val) {
-# return false;
-# }
-# pre = pre.next;
-# slow = slow.next;
-# }
-# return true;
-# }
+
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+class Solution:
+    def isPalindrome (head:ListNode):
+        if head is None or head.next is None:
+            return True
+        slow = head
+        fast = head
+        pre = head
+        prepre = None
+        while( fast is not None and fast.next is not None):
+            pre = slow
+            slow = slow.next
+            fast = fast.next.next
+            pre.next = prepre
+            prepre = pre
+
+        if fast is not None:
+            slow = slow.next
+
+        while pre is not None and slow is not None:
+            if pre.val != slow.val:
+                return False
+            pre = pre.next
+            slow = slow.next
+
+        return True

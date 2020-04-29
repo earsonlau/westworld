@@ -26,33 +26,44 @@
 #     ListNode(int x) {
 #         val = x;
 #     }
+
+
+class LNode:
+    def __init__(self,x):
+        self.val = x
+        self.next = None
+        self.random = None
+
+class LinkList(object):
+    def __init__(self):
+        self.head = None
+
+    #链表初始化函数, 方法类似于尾插
+    def initList(self, data):
+        if data is None or len(data) == 0:
+            print("array can not be empty")
+            return False
+        #创建头结点
+        self.head = LNode(data[0])
+        p = self.head
+        #逐个为 data 内的数据创建结点, 建立链表
+        for i in data[1:]:
+            node = LNode(i)
+            p.next = node
+            p = p.next
 #
-#     public ListNode(int[] nums) {
-#         if (nums == null || nums.length == 0) {
-#             throw new IllegalArgumentException("arr can not be empty");
-#         }
-#         this.val = nums[0];
-#         ListNode curr = this;
-#         for (int i = 1; i < nums.length; i++) {
-#             curr.next = new ListNode(nums[i]);
-#             curr = curr.next;
-#         }
-#     }
-#
-#     @Override
-#     public String toString() {
-#         StringBuilder s = new StringBuilder();
-#         ListNode cur = this;
-#         while (cur != null) {
-#             s.append(cur.val ).append(" -> ");
-#             cur = cur.next;
-#         }
-#         s.append("NULL");
-#         return s.toString();
-#     }
-# }
-#
-#
+
+
+def toString(cur):
+    s = ""
+    while cur is not None:
+        s += str(cur.val)
+        s += " -> "
+        cur = cur.next
+
+    s+= "NULL"
+    return s
+
 # // 关键在于边界条件的讨论，和代码调试
 #
 # public class Solution {
@@ -91,3 +102,32 @@
 #         return newHead;
 #     }
 # }
+# 关键在于边界条件的讨论和代码调试
+class Solution:
+    def rotateRight(self,head,k):
+        # 特判
+        if head is None or head.next is None or k ==0:
+            return head
+        #第一步:知道链表有多少个结点
+        n = 1
+        fastnode = head
+        while (fastnode.next is not None):
+            fastnode = fastnode.next
+            n += 1
+        # fastnode到末尾结点
+        k = k % n
+        if k == 0:
+            return head
+
+        # 第二步:找到倒数第k个节点,走 n - k - 1 步
+        slownode = head
+        for i in range(n-k-1):
+            slownode = slownode.next
+
+        # 第三步:穿针引线
+        newhead = slownode.next
+        #先把尾部接到开头
+        fastnode.next = head
+        #再切断原来的连接
+        slownode.next = None
+        return newhead

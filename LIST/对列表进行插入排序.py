@@ -13,25 +13,33 @@
 # 思路:
 # 这个道题就像排队,先找个排头dummy,然后依次从head节点放入dummy,只需要依次dummy现有节点比较,插入其中!
 #
-# 1 	class Solution:
-# 2 	    def insertionSortList(self, head: ListNode) -> ListNode:
-# 3 	             # 找个排头
-# 4 	        dummy = ListNode(-1)
-# 5 	        pre = dummy
-# 6 	        # 依次拿head节点
-# 7 	        cur = head
-# 8 	        while cur:
-# 9 	                # 把下一次节点保持下来
-# 10 	            tmp = cur.next
-# 11 	            # 找到插入的位置
-# 12 	            while pre.next and pre.next.val < cur.val:
-# 13 	                pre = pre.next
-# 14 	            # 进行插入操作
-# 15 	            cur.next = pre.next
-# 16 	            pre.next = cur
-# 17 	            pre= dummy
-# 18 	            cur = tmp
-# 19 	        return dummy.next
+
+
+class ListNode:
+    def __init__(self,x):
+        self.val = x
+        self.next = None
+        self.random = None
+
+class Solution:
+    def insertionSortList(self, head: ListNode) -> ListNode:
+        # 找个排头
+        dummy = ListNode(-1)
+        pre = dummy
+        # 依次拿head节点
+        cur = head
+        while cur:
+            # 把下一次节点保持下来
+            tmp = cur.next
+            # 找到插入的位置
+            while pre.next and pre.next.val < cur.val:
+                pre = pre.next
+            # 进行插入操作
+            cur.next = pre.next
+            pre.next = cur
+            pre= dummy
+            cur = tmp
+        return dummy.next
 #
 #
 #

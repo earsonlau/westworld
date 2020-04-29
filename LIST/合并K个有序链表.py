@@ -15,6 +15,7 @@
 #
 # JAVA
 #
+
 # /**
 #  * Definition for singly-linked list.
 #  * public class ListNode {
@@ -82,3 +83,9 @@
 #             return l2;
 #         }
 #     }
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+
