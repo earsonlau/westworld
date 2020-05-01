@@ -13,3 +13,10 @@ leetcode算法题题解整理，包括思路和注释。
 5. STACK
 6. STRING
 7. TREE
+
+2020-05-01:
+未全部转为python题解:
+1. MATHS
+2. STACK
+3. STRING
+4. TREE
