@@ -11,3 +11,14 @@
 #     7 	    }
 #     8 	    return pA;
 #     9 	}
+
+class Solution:
+    def getIntersectionNode(self, headA, headB):
+        if headA is None or headB is None:
+            return None
+        pA = headA
+        pB = headB
+        while pA != pB:
+            pA = headB if pA is None else pA.next
+            pB = headB if pB is None else pB.next
+        return pA
