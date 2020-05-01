@@ -31,16 +31,13 @@
 # 从根到叶子节点路径 4->9->1 代表数字 491.
 # 从根到叶子节点路径 4->0 代表数字 40.
 # 因此，数字总和 = 495 + 491 + 40 = 1026.
+class Solution:
+    def sumNumbers(self,root):
+        return self.helper(root,0)
 
-    public int sumNumbers(TreeNode root) {
-        return helper(root, 0);
-    }
-
-    public int helper(TreeNode root, int i){
-        if (root == null) return 0;
-        int temp = i * 10 + root.val;
-        if (root.left == null && root.right == null)
-            return temp;
-        return helper(root.left, temp) + helper(root.right, temp);
-    }
-
+    def helper(self,root,i):
+        if root is None:return 0
+        temp = i * 10 + root.val
+        if root.left is None and root.right is None:
+            return temp
+        return self.helper(root.left, temp) + self.helper(root.right, temp)

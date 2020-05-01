@@ -61,6 +61,10 @@
 # 空间复杂度 O(N)： 最差情况下（树退化为链表时），系统递归需要使用 O(N) 的栈空间。
 
 
+
+
+
+
 class Solution:
     def isBalanced(self, root: TreeNode) -> bool:
         return self.recur(root) != -1

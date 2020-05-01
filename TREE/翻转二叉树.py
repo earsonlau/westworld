@@ -36,9 +36,24 @@
 #                 //都已经交换完了
 #                 return root;
 #         }
-}
+# }
 
-
+class Solution:
+    def invertTree(self,root):
+        #递归函数的终止条件，节点为空时返回
+        if root is None:
+            return None
+        #下面三句是将当前节点的左右子树交换
+        tmp = root.right
+        root.right = root.left
+        root.left = tmp
+        #递归交换当前节点的左子树
+        self.invertTree(root.left)
+        #递归交换当前节点的右子树
+        self.invertTree(root.right)
+        # 函数返回时就表示当前这个节点，以及它的左右子树
+        # 都已经交换完了
+        return root
 
 #迭代
 
@@ -49,8 +64,7 @@
 # 2        public TreeNode invertTree(TreeNode root) {
 # 3 if (root == null) {
 # 4
-#
-#
+
 # return null;
 # 5 		}
 # 6 			//将二叉树中的节点逐层放入队列中，再迭代处理队列中的元素
@@ -76,3 +90,27 @@
 # 25 			//返回处理完的根节点
 # 26 			return root;
 # 27 		}28 	}
+
+# 迭代
+import queue
+class Solution:
+    def invertTree(self,root):
+        if root is None:
+            return None
+        #将二叉树中的节点逐层放入队列中，再迭代处理队列中的元素
+        Q = queue.Queue()
+        Q.put(root)
+        while Q.not_empty():
+            #每次都从队列中拿一个节点，并交换这个节点的左右子树
+            tmp = Q.get()
+            left = tmp.left
+            tmp.left = tmp.right
+            tmp.right = left
+            # 如果当前节点的左子树不为空，则放入队列等待后续处理
+            if tmp.left is not None:
+                queue.put(tmp.left)
+            # 如果当前节点的右子树不为空，则放入队列等待后续处理
+            if tmp.right is not None:
+                queue.put(tmp.right)
+         # 返回处理完的根节点
+        return root
