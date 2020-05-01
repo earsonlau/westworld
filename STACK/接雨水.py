@@ -37,6 +37,35 @@
 # 		return max;
 # }
 #
+def trap(height):
+    sum = 0
+    max = getMax(height)
+    for i in range(1,max+1):
+        isStart = False # 标记是否开始更新
+        temp_sum = 0
+        for j in range(len(height)):
+            if isStart and height[j] < i:
+                temp_sum += 1
+            if height[j] >= i :
+                sum += temp_sum
+                temp_sum = 0
+                isStart = True
+    return sum
+
+def getMax(height):
+    max = 0
+    for i in range(len(height)):
+        if height[i] > max:
+            max = height[i]
+    return max
+
+
+
+
+
+
+
+
 #
 #
 # 解法二：按列求

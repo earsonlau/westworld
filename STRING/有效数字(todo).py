@@ -29,36 +29,61 @@
 # C++函数的形式已经更新了。如果你仍然看见你的函数接收 const char * 类型的参数，请点击重载按钮重置你的代码。
 # 把当前的输入分成几类，再用几个标志位来判断当前是否合法。
 
-public boolean isNumber(String s) {
-    s = s.trim();
-
-    boolean pointSeen = false;
-    boolean eSeen = false;
-    boolean numberSeen = false;
-    boolean numberAfterE = true;
-    for(int i=0; i<s.length(); i++) {
-        if('0' <= s.charAt(i) && s.charAt(i) <= '9') {
-            numberSeen = true;
-            numberAfterE = true;
-        } else if(s.charAt(i) == '.') {
-            if(eSeen || pointSeen) {
-                return false;
-            }
-            pointSeen = true;
-        } else if(s.charAt(i) == 'e') {
-            if(eSeen || !numberSeen) {
-                return false;
-            }
-            numberAfterE = false;
-            eSeen = true;
-        } else if(s.charAt(i) == '-' || s.charAt(i) == '+') {
-            if(i != 0 && s.charAt(i-1) != 'e') {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
-    return numberSeen && numberAfterE;
-}
+# public boolean isNumber(String s) {
+#     s = s.trim();
+#
+#     boolean pointSeen = false;
+#     boolean eSeen = false;
+#     boolean numberSeen = false;
+#     boolean numberAfterE = true;
+#     for(int i=0; i<s.length(); i++) {
+#         if('0' <= s.charAt(i) && s.charAt(i) <= '9') {
+#             numberSeen = true;
+#             numberAfterE = true;
+#         } else if(s.charAt(i) == '.') {
+#             if(eSeen || pointSeen) {
+#                 return false;
+#             }
+#             pointSeen = true;
+#         } else if(s.charAt(i) == 'e') {
+#             if(eSeen || !numberSeen) {
+#                 return false;
+#             }
+#             numberAfterE = false;
+#             eSeen = true;
+#         } else if(s.charAt(i) == '-' || s.charAt(i) == '+') {
+#             if(i != 0 && s.charAt(i-1) != 'e') {
+#                 return false;
+#             }
+#         } else {
+#             return false;
+#         }
+#     }
+#
+#     return numberSeen && numberAfterE;
+# }
+def isNumber(s):
+    s = s.strip()
+    pointSeen = False
+    eSeen = False
+    numberSeen = False
+    numberAfterE = True
+    for i in range(len(s)):
+        if ('0' <= s[i] and s[i] <= '9'):
+            numberSeen = True
+            numberAfterE = True
+        elif s[i] == '.':
+            if eSeen or pointSeen:
+                return False
+            pointSeen = True
+        elif s[i] == 'e':
+            if eSeen or (not numberSeen):
+                return False
+            numberAfterE = False
+            eSeen = True
+        elif s[i] == '-' or s[i] == '+':
+            if i != 0 and s[i-1] != 'e':
+                return False
+        else:
+            return  False
+    return numberSeen and numberAfterE

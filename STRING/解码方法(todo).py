@@ -16,17 +16,21 @@
 # 输入: "226"
 # 输出: 3
 # 解释: 它可以解码为 "BZ" (2 26), "VF" (22 6), 或者 "BBF" (2 2 6) 。
-int numDecodings(string s) {
-    if (s[0] == '0') return 0;
-    int pre = 1, curr = 1;//dp[-1] = dp[0] = 1
-    for (int i = 1; i < s.size(); i++) {
-        int tmp = curr;
-        if (s[i] == '0')
-            if (s[i - 1] == '1' || s[i - 1] == '2') curr = pre;
-            else return 0;
-        else if (s[i - 1] == '1' || (s[i - 1] == '2' && s[i] >= '1' && s[i] <= '6'))
-            curr = curr + pre;
-        pre = tmp;
-    }
-    return curr;
-}
+
+def numDecodings(s):
+    if s[0] == '0': return 0
+    pre = 1
+    curr = 1
+    for i in range(1,len(s)):
+        tmp = curr
+        if s[i] == '0':
+            if s[i - 1] == '1' or s[i - 1] == '2':
+                curr = pre
+            else:
+                return 0
+        elif s[i - 1] == '1' or (s[i - 1] == '2' and s[i] >= '1' and s[i] <= '6'):
+            curr += pre
+        else:
+            pass
+        pre = tmp
+    return  curr

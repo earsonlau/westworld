@@ -44,38 +44,35 @@
 # 输出: false
 #
 
+def isMatch(text,pattern):
+    if len(text) != len(pattern):
+        return False
+    for j in range(len(pattern)):
+        if pattern[j] != text[j]:
+            return False
+    return True
 
-
-
-
-
-bool isMatch(string text, string pattern) {
-    if (text.size() != pattern.size())
-        return false;
-    for (int j = 0; j < pattern.size(); j++) {
-        if (pattern[j] != text[j])
-            return false;
-    }
-    return true;
-}
 # 然后，我稍微改造一下上面的代码，略微复杂了一点，但意思还是一样的，很容易理解吧：
-bool isMatch(string text, string pattern) {
-    int i = 0; #// text 的索引位置
-    int j = 0; #// pattern 的索引位置
-    while (j < pattern.size()) {
-        if (i >= text.size())
-            return false;
-        if (pattern[j++] != text[i++])
-            return false;
-    }
-    # // 相等则说明完成匹配
-    return j == text.size();
-}
+def isMatch(text,pattern):
+    i = 0 # text的索引
+    j = 0 # pattern的索引
+    while j < len(pattern):
+        if i >= len(text):
+            return False
+        i += 1
+        j += 1
+        if pattern[j] != text[i]:
+            return False
+    # 相等则说明完成匹配
+    return j == len(text)
+
 # 如上改写，是为了将这个算法改造成递归算法（伪码）：
-def isMatch(text, pattern) -> bool:
-    if pattern is empty: return (text is empty?)
-    first_match = (text not empty) and pattern[0] == text[0]
-    return first_match and isMatch(text[1:], pattern[1:])
+# def isMatch(text, pattern) -> bool:
+#     if pattern is empty: return (text is empty?)
+#     first_match = (text not empty) and pattern[0] == text[0]
+#     return first_match and isMatch(text[1:], pattern[1:])
+
+
 # 如果你能够理解这段代码，恭喜你，你的递归思想已经到位，正则表达式算法虽然有点复杂，其实是基于这段递归代码逐步改造而成的。
 # 点号可以匹配任意一个字符，万金油嘛，其实是最简单的，稍加改造即可：
 def isMatch(text, pattern) -> bool:
@@ -83,17 +80,17 @@ def isMatch(text, pattern) -> bool:
     first_match = bool(text) and pattern[0] in {text[0], '.'}
     return first_match and isMatch(text[1:], pattern[1:])
 # 星号通配符可以让前一个字符重复任意次数，包括零次。那到底是重复几次呢？这似乎有点困难，不过不要着急，我们起码可以把框架的搭建再进一步：
-def isMatch(text, pattern) -> bool:
-    if not pattern: return not text
-    first_match = bool(text) and pattern[0] in {text[0], '.'}
-    if len(pattern) >= 2 and pattern[1] == '*':
-        # 发现 '*' 通配符
-    else:
-        return first_match and isMatch(text[1:], pattern[1:])
-# 星号前面的那个字符到底要重复几次呢？这需要计算机暴力穷举来算，假设重复 N 次吧。前文多次强调过，写递归的技巧是管好当下，之后的事抛给递归。具体到这里，不管 N 是多少，当前的选择只有两个：匹配 0 次、匹配 1 次。所以可以这样处理：
-if len(pattern) >= 2 and pattern[1] == '*':
-    return isMatch(text, pattern[2:]) or \
-            first_match and isMatch(text[1:], pattern)
+# def isMatch(text, pattern) -> bool:
+#     if not pattern: return not text
+#     first_match = bool(text) and pattern[0] in {text[0], '.'}
+#     if len(pattern) >= 2 and pattern[1] == '*':
+#         # 发现 '*' 通配符
+#     else:
+#         return first_match and isMatch(text[1:], pattern[1:])
+# # 星号前面的那个字符到底要重复几次呢？这需要计算机暴力穷举来算，假设重复 N 次吧。前文多次强调过，写递归的技巧是管好当下，之后的事抛给递归。具体到这里，不管 N 是多少，当前的选择只有两个：匹配 0 次、匹配 1 次。所以可以这样处理：
+# # if len(pattern) >= 2 and pattern[1] == '*':
+# #     return isMatch(text, pattern[2:]) or \
+# #             first_match and isMatch(text[1:], pattern)
 # 解释：如果发现有字符和 '*' 结合，
     # 或者匹配该字符 0 次，然后跳过该字符和 '*'
     # 或者当 pattern[0] 和 text[0] 匹配后，移动 text
