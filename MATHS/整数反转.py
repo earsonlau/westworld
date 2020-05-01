@@ -36,3 +36,16 @@
 #    14 	        return ans;
 #    15 	    }
 # 	}
+class Solution:
+    def reverse(self,x):
+        ans = 0
+        while x != 0:
+            pop = x % 10
+            # 溢出判断
+            if ans > float('inf') / 10 or ( ans == float('inf') / 10 and pop > 7):
+                return 0
+            if ans < -float('inf') / 10 or (ans == -float('inf') / 10 and pop < -8):
+                return 0
+            ans = ans * 10 + pop
+            x /= 10
+        return ans

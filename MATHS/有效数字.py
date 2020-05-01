@@ -66,3 +66,28 @@
 #     return numberSeen && numberAfterE;
 # }
 
+def isNumber(s):
+    s = s.strip()
+    pointSeen = False
+    eSeen = False
+    numberSeen = False
+    numberAfterE = True
+    for i in range(len(s)):
+        if ('0' <= s[i] and s[i] <= '9'):
+            numberSeen = True
+            numberAfterE = True
+        elif s[i] == '.':
+            if eSeen or pointSeen:
+                return False
+            pointSeen = True
+        elif s[i] == 'e':
+            if eSeen or (not numberSeen):
+                return False
+            numberAfterE = False
+            eSeen = True
+        elif s[i] == '-' or s[i] == '+':
+            if i != 0 and s[i-1] != 'e':
+                return False
+        else:
+            return  False
+    return numberSeen and numberAfterE

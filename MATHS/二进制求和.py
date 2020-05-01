@@ -49,3 +49,21 @@
 #         return ans.reverse().toString();
 #     }
 # }
+class Solution:
+    def addBinary(self,a,b):
+        ans = ""
+        sum = 0
+        i = len(a) - 1
+        j = len(b) - 1
+        while i >= 0 or j >= 0:
+            if i >= 0 :
+                sum += ord(a[i]) - ord('0')
+            if j >= 0 :
+                sum += ord(b[j]) - ord('0')
+            ans += str(sum % 2)
+            sum //= 2
+            i -= 1
+            j -= 1
+        if sum == 1:
+            ans += '1'
+        return ans[::-1]
