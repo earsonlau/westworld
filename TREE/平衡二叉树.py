@@ -61,6 +61,11 @@
 # 空间复杂度 O(N)： 最差情况下（树退化为链表时），系统递归需要使用 O(N) 的栈空间。
 
 
+class TreeNode:
+    def __init__(self,x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 
 

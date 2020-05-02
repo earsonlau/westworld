@@ -20,3 +20,9 @@ leetcode算法题题解整理，包括思路和注释。
 2. STACK
 3. STRING
 4. TREE
+
+2020-05-02:
+全部已转为python题解
+
+TODO:
+完善思路与注释

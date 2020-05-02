@@ -49,6 +49,31 @@
 #         }
 # }
 #
+class Solution:
+#         //一个映射表，第二个位置是"abc“,第三个位置是"def"。。。
+#         //这里也可以用map，用数组可以更节省点内存
+    letter_map =  {" ","*","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"}
+    res = []
+    def letterCombinations(self,digits):
+        # 注意边界条件
+        if digits is None or len(digits) == 0:
+            return
+        self.iteStr(digits,"",0)
+        return self.res
+
+    def iterStr(self,str,letter,index):
+        # 递归的终止条件
+        if index == len(str):
+            self.res.append(letter)
+            return
+        # 获取index位置的字符，
+        c = str[index]
+        pos = c - '0'
+        map_string = self.letter_map[pos]
+
+        for i in range(len(map_string)):
+            self.iterStr(str, letter+map_string[i],index + 1 )
+
 # #队列
 # class Solution {
 # 	public List<String> letterCombinations(String digits) {
@@ -80,3 +105,22 @@
 # 		return res;
 # 	}
 # }
+# 队列
+    def letterCombinations(self,digits):
+        # 注意边界条件
+        if digits is None or len(digits) == 0:
+            return
+        letter_map = {" ","*","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"}
+        res = []
+        res.append("")
+        for i in range(len(digits)):
+            #由当前遍历到的字符，取字典表中查找对应的字符串
+            letters = letter_map[digits[i] - '0']
+            size = len(res)
+            #计算出队列长度后，将队列中的每个元素挨个拿出来
+            for j in range(size):
+                tmp = res.pop(0)
+                # 然后跟"def"这样的字符串拼接，并再次放到队列中
+                for k in range(len(letters)):
+                    res.append(tmp + letters[k])
+        return res

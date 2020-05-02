@@ -151,3 +151,25 @@
 #         return dp.get(n);
 #     }
 # }
+
+class Solution:
+    # 把结果集保存在动态规划的数组里
+    def generateParenthesis(self,n):
+        if n == 0:
+            return
+        # 这里 dp 用list
+        dp = []
+        dp0 = []
+        dp0.append("")
+        dp.append(dp0)
+        for i in range (1,n+1):
+            cur = []
+            for j in range(i):
+                str1 = dp[j]
+                str2 = dp[i - 1 - j]
+                for s1 in str1 :
+                    for s2 in str2:
+                        # 枚举右括号的位置
+                        cur.append("("+ s1 + ")" + s2)
+            dp.append(cur)
+        return dp[n]
