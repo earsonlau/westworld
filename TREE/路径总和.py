@@ -15,28 +15,25 @@
 # 返回 true, 因为存在目标和为 22 的根节点到叶子节点的路径 5->4->11->2。
 #
 # 递归
-#     1
-#     2 	public boolean hasPathSum(TreeNode root, int sum) {
-#     3 	    if (root == null) {
-#     4 	        return false;
-#     5 	    }
-#     6 	    return hasPathSumHelper(root, sum);
-#     7 	}
-#     8
-#     9 	private boolean hasPathSumHelper(TreeNode root, int sum) {
-#    10 	    //到达叶子节点
-#    11 	    if (root.left == null && root.right == null) {
-#    12 	        return root.val == sum;
-#    13 	    }
-#    14 	    //左孩子为 null
-#    15 	    if (root.left == null) {
-#    16 	        return hasPathSumHelper(root.right, sum - root.val);
-#    17 	    }
-#    18 	    //右孩子为 null
-#    19 	    if (root.right == null) {
-#    20 	        return hasPathSumHelper(root.left, sum - root.val);
-#    21 	    }
-#    22 	    return hasPathSumHelper(root.left, sum - root.val) || hasPathSumHelper(root.right, sum - root.val);
-#    23 	}
 
+class TreeNode:
+    def __init__(self,x):
+        self.val = x
+        self.left = None
+        self.right = None
 
+class Solution:
+    def hasPathSum(self,root: TreeNode,sum):
+        if root is None:
+            return False
+        return self.hasPathSumHelper(self,root,sum)
+    def hasPachSumHelper(self,root: TreeNode,sum):
+        #到达叶子节点
+        if root.left is None and root.right is None:
+            return root.val == sum
+        #左孩子为 null
+        if root.left is None:
+            return self.hasPachSumHelper(root.right, sum - root.val)
+        #右孩子为 null
+        if root.right is None:
+            return self.hasPachSumHelper(root.left, sum - root.val) or self.hasPachSumHelper(root.left, sum - root.val)

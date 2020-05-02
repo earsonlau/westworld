@@ -23,6 +23,13 @@
 # 链接：https://leetcode-cn.com/problems/path-sum-ii
 # 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 #
+from typing import List
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
 # 非递归
 class Solution:
     def pathSum(self, root: TreeNode, sum_: int) -> List[List[int]]:

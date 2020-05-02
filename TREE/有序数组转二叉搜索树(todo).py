@@ -16,18 +16,38 @@
 #
 #
 #递归
-public TreeNode sortedArrayToBST(int[] nums) {
-    return sortedArrayToBST(nums, 0, nums.length);
-}
+# public TreeNode sortedArrayToBST(int[] nums) {
+#     return sortedArrayToBST(nums, 0, nums.length);
+# }
+#
+# private TreeNode sortedArrayToBST(int[] nums, int start, int end) {
+#     if (start == end) {
+#         return null;
+#     }
+#     int mid = (start + end) >>> 1;
+#     TreeNode root = new TreeNode(nums[mid]);
+#     root.left = sortedArrayToBST(nums, start, mid);
+#     root.right = sortedArrayToBST(nums, mid + 1, end);
+#
+#     return root;
+# }
 
-private TreeNode sortedArrayToBST(int[] nums, int start, int end) {
-    if (start == end) {
-        return null;
-    }
-    int mid = (start + end) >>> 1;
-    TreeNode root = new TreeNode(nums[mid]);
-    root.left = sortedArrayToBST(nums, start, mid);
-    root.right = sortedArrayToBST(nums, mid + 1, end);
+class TreeNode:
+    def __init__(self,x):
+        self.val = x
+        self.left = None
+        self.right = None
 
-    return root;
-}
+
+class Solution:
+    def sortedArrayToBST(self,nums):
+        return self.sortedArrayToBST(nums, 0, len(nums))
+
+    def __sortedArrayToBST__(self,nums,start,end):
+        if start == end:
+            return None
+        mid = (start) + end >> 1
+        root = TreeNode(nums[mid])
+        root.left= self.sortedArrayToBST(nums, start, mid)
+        root.right = self.sortedArrayToBST(nums, mid + 1, end)
+        return root
