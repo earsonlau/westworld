@@ -59,17 +59,9 @@ def getMax(height):
             max = height[i]
     return max
 
-
-
-
-
-
-
-
 #
 #
 # 解法二：按列求
-#
 #
 #
 # public int trap(int[] height) {
@@ -101,6 +93,31 @@ def getMax(height):
 # }
 #
 #
+class Solution:
+    def trap(height):
+        sum = 0
+        # 最两端的列不用考虑，因为一定不会有水。下标从 1 到 length -2
+        for i in range(1,len(height) - 1):
+            max_left = 0
+            # 找出左边最高
+            for j in range (i-1,-1,-1):
+                if height[j] > max_left:
+                    max_left = height[j]
+            max_right = 0
+            # 找出右边最高
+            for j in range(i+1,len(height)):
+                max_right = height[j]
+                if height[j] > max_right:
+                    max_right = height[j]
+            # 找出两端较小的
+            min = min(max_left,max_right)
+            # 只有较小的一段大于当前列的高度才会有水，其他情况不会有水
+            if min > height[i]:
+                sum += (min - height[i])
+
+
+
+
 #
 # 解法三：动态规划
 #
