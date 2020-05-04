@@ -48,24 +48,27 @@
 # 双指针贪心算法
 #
 def isMatch(s,p):
-    if (p is None or len(p)==0):
+    if (p is None or len(p)==0): # p为空字符串
         return s == None or len(s) == 0
     i = 0
     j = 0
-    i_start = -1
-    j_start = -1
+    i_start = -1 # 与*相关
+    j_start = -1 # 与*相关
     slen = len(s)
     plen = len(p)
     # 判断s的所有字符是否匹配
     while i < slen:
         #三种匹配成功情况以及匹配失败返回False
+        #?可以和单个任意字符匹配
         if j < plen and (s[i] == p[j] or p[j] == '?'):
             i += 1
             j += 1
-        elif j <plen and p[j] == '*':
+        #*可以和其后的任意字符匹配
+        elif j < plen and p[j] == '*':
             i_start = i
             j_start = j
-        elif i_start > -1 :
+        #*号匹配后面所有
+        elif i_start > -1:
             i_start += 1
             i = i_start
             j = j_start + 1
