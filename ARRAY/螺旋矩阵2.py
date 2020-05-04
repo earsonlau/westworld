@@ -20,30 +20,30 @@
 import numpy as np
 class Solution:
     def generateMatrix(self,n):
-        l = 0
-        r = n - 1
-        t = 0
-        b = n - 1
-        mat = np.zeros([n,n])
-        num = 1
-        tar = n * n
-        while num <= tar:
+        l = 0 # 左边界
+        r = n - 1 # 右边界
+        t = 0 # 上边界
+        b = n - 1 # 下边界
+        mat = np.zeros([n,n]) # 生成一个 n x n 的零矩阵
+        num = 1 # 迭代初始值
+        tar = n * n # 迭代终止值
+        while num <= tar: # 每次填一个数
             for i in range(l,r+1):
-                mat[t][i] =  num #left to right.
-                num += 1
-            t += 1
+                mat[t][i] =  num # 从左到右填数 (left to right.
+                num += 1 # 填的是递增的数
+            t += 1 # 上边界往下夹
             for i in range(t, b + 1):
-                mat[i][r] = num # top to bottom.
-                num += 1
-            r -= 1
+                mat[i][r] = num # 从上到下填数 (top to bottom.
+                num += 1 # 填的是递增的数
+            r -= 1 #右边界往左夹
             for i in range(r, l - 1,-1):
-                mat[b][i] = num # top to bottom.
+                mat[b][i] = num # 从右到左填数 (right to left.
                 num += 1
-            b -= 1
+            b -= 1 # 下边界往上夹
             for i in range(b,t-1,-1):
-                mat[i][l] = num # bottom to top.
+                mat[i][l] = num # 从下往上填数 (bottom to top.
                 num += 1
-            l += 1
+            l += 1 #左边界往右夹
         return mat
 
 a = Solution()

@@ -29,38 +29,38 @@
 
 class Solution:
     def spiralOrder(self,matrix):
-        ans = []
+        ans = [] #结果集
         if (matrix is None or len(matrix) == 0):
             return ans
-        u = 0
-        d = len(matrix) - 1
-        l = 0
-        r = len(matrix[0]) - 1
-        while(1):
+        u = 0 # 上边界
+        d = len(matrix) - 1 # 下边界
+        l = 0 # 左边界
+        r = len(matrix[0]) - 1 # 右边界
+        while(1): #一直遍历
             for i in range(l,r+1):
                 # i = i + 1
-                ans.append(matrix[u][i])
-            u = u + 1
+                ans.append(matrix[u][i]) # 从左往右取数
+            u = u + 1 #上边界往下夹
             if u > d :
-                break
+                break # 遍历结束
             for i in range(u,d+1):
                 # i = i + 1
-                ans.append(matrix[i][r])
-            r = r - 1
+                ans.append(matrix[i][r]) # 从上往下取数
+            r = r - 1 # 右边界往左夹
             if r < l :
-                break
+                break # 遍历结束
             for i in range(r,l-1,-1):
                 # i = i - 1
-                ans.append(matrix[d][i])
-            d = d - 1
+                ans.append(matrix[d][i]) # 从右到左取数
+            d = d - 1 # 下边界往上夹
             if d < u :
-                break
+                break # 遍历结束
             for i in range(d,u-1,-1):
                 # i = i - 1
-                ans.append(matrix[i][l])
+                ans.append(matrix[i][l]) # 从下往上遍历
             l = l + 1
             if l > r :
-                break
+                break # 遍历结束
         return ans
 a = Solution()
 matrix = \

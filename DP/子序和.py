@@ -15,32 +15,34 @@
 
 #分治算法 in Python
 class Solution:
-    def crossSum(self,nums,left,right,p):
-        if left == right: return nums[left]
-        leftSubsum = -float('inf')
-        currSum = 0
-        for i in range (p,left-1,-1):
-            currSum+=nums[i]
-            leftSubsum = max(leftSubsum,currSum)
+    def crossSum(self,nums,left,right,p): # p为分治算法的分割点
+        if left == right: return nums[left] # base
+        leftSubsum = -float('inf') # 负无穷
+        currSum = 0 # 当前累计和
+        for i in range(p, left-1, -1): # 从中间位置向左遍历
+            currSum+=nums[i] # 计算累计和
+            leftSubsum = max(leftSubsum,currSum) # 取累计和最大和,记为 左子和
 
         rightSubsum = -float('inf')
         currSum = 0
-        for i in range(p+1,right+1):
-            currSum += nums[i]
-            rightSubsum = max(rightSubsum,currSum)
+        for i in range(p+1,right+1): # 从中间位置向右遍历
+            currSum += nums[i] # 当前累计和
+            rightSubsum = max(rightSubsum,currSum) # 取累计和最大和,记为 右子和
 
-        return leftSubsum + rightSubsum
+        return leftSubsum + rightSubsum #左子和右子和相加即为最终和
 
     def helper(self,nums,left,right):
         print("left:",left)
         print("right:",right)
         if left == right: return nums[left]
-        p = (left + right) // 2
-        leftSum = self.helper(nums,left,p)
-        rightSum = self.helper(nums,p+1,right)
-        crossSum = self.crossSum(nums,left,right,p)
+        p = (left + right) // 2 # p取中点
+        leftSum = self.helper(nums,left,p) # 递归求左子和
+        rightSum = self.helper(nums,p+1,right) # 递归求右子和
+        crossSum = self.crossSum(nums,left,right,p) # 求最终和
         return max(max(leftSum,rightSum),crossSum)
+
     def maxSubArray(self,nums):
+        # 最左边的位置作为left参数的值,最右边的位置作为right参数的值
         return self.helper(nums,0,len(nums) - 1 )
 
 nums = [-2,1,-3,4,-1,2,1,-5,4]
@@ -54,8 +56,8 @@ class Solution:
         currSum = nums[0]
         maxSum = nums[0]
         for i in range(1,n):
-            currSum = max(nums[i],currSum + nums[i])
-            maxSum = max(maxSum,currSum)
+            currSum = max(nums[i],currSum + nums[i]) # 不断求不带负数的和
+            maxSum = max(maxSum,currSum) # 取和的最大值
         return maxSum
 
 nums = [-2,1,-3,4,-1,2,1,-5,4]
@@ -67,8 +69,8 @@ class Solution:
         n = len(nums)
         max_sum = nums[0]
         for i in range(1, n):
-            if nums[i - 1] > 0:
-                nums[i] += nums[i - 1]
-            max_sum = max(nums[i], max_sum)
+            if nums[i - 1] > 0: # 如果为正数
+                nums[i] += nums[i - 1] # nums[i - 1]直接加到nums[i]上
+            max_sum = max(nums[i], max_sum) # 取最大和
 
         return max_sum

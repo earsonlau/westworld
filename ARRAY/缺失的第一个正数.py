@@ -1,5 +1,33 @@
-# 方法一：哈希表（空间复杂度不符合要求）
+# 给你一个未排序的整数数组，请你找出其中没有出现的最小的正整数。
 #
+#
+#
+#  示例 1:
+#
+#  输入: [1,2,0]
+# 输出: 3
+#
+#
+#  示例 2:
+#
+#  输入: [3,4,-1,1]
+# 输出: 2
+#
+#
+#  示例 3:
+#
+#  输入: [7,8,9,11,12]
+# 输出: 1
+#
+#
+#
+#
+#  提示：
+#
+#  你的算法的时间复杂度应为O(n)，并且只能使用常数级别的额外空间。
+#  Related Topics 数组
+#
+# 方法一：哈希表（空间复杂度不符合要求）
 # 按照刚才我们读例子的思路，其实我们只需从最小的正整数 1 开始，依次判断2、3 、4 直到数组的长度 N 是否在数组中。
 #
 # 如果当前考虑的数不在这个数组中，我们就找到了这个缺失的最小正整数。
@@ -10,16 +38,18 @@
 
 class Solution:
     def firstMissingPositive(self,nums):
-        lens = len(nums)
+        lens = len(nums) # 取一下nums长度
         #定义一个叫hashSet的集合
         hashSet  = set()
+        # 遍历nums
         for num in nums:
+            # 往集合里添加元素
             hashSet.add(num)
-
+        #遍历整数
         for i in range(1,lens+1):
             if (not (i in hashSet)):
-                return i
-        return lens + 1
+                return i # 谁不在 返回谁
+        return lens + 1 # 否则返回lens + 1
 
 a = Solution()
 print(a.firstMissingPositive([2,3]))
@@ -32,20 +62,21 @@ print(a.firstMissingPositive([2,3]))
 # 这个思路需要先对数组排序，而排序使用的时间复杂度是 O(N \log N)O(NlogN)，是不符合这个问题的时间复杂度要求。
 
 class Solution:
-    def binarySearch(self,nums,target):
-        left  = 0
-        right = len(nums) -1
+    # 二分查找
+    def binarySearch(self, nums, target):
+        left = 0
+        right = len(nums) - 1
         while (left <= right):
             mid = (left + right) >> 1
             if nums[mid] == target:
                 return mid
             elif nums[mid] < target:
                 left = mid + 1
-            else :
+            else:
                 right = mid - 1
-        return -1
+        return - 1
 
-    def firstMissingPositive(self,nums):
+    def firstMissingPositive(self, nums):
         lens = len(nums)
         #定义一个叫hashSet的集合
         nums.sort()
@@ -70,14 +101,13 @@ class Solution:
 
     # 3 应该放在索引为 2 的地方
     # 4 应该放在索引为 3 的地方
-
     def firstMissingPositive(self, nums: List[int]) -> int:
         size = len(nums)
         for i in range(size):
             # 先判断这个数字是不是索引，然后判断这个数字是不是放在了正确的地方
             while 1 <= nums[i] <= size and nums[i] != nums[nums[i] - 1]:
-                self.__swap(nums, i, nums[i] - 1)
-
+                self.__swap(nums, i, nums[i] - 1) # 如果是索引但是没有放在正确的地方 那么放到正确的地方
+        #谁没有建立正确的映射关系,谁就是缺失的
         for i in range(size):
             if i + 1 != nums[i]:
                 return i + 1

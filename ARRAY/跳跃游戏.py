@@ -23,9 +23,13 @@
 # 如果可以一直跳到最后，就成功了。
 
 def canJump(nums):
+    # 初始起跳距离设定为k = 0
 	k = 0
+	# 遍历nums
 	for i in range(len(nums)):
+	    # 如果i超过了可达的最远距离,说明肯定跳不到最后
 	    if i > k: return False
+		# k的值修改为可达最远距离
 	    k = max(k, i + nums[i])
 	return True
 print(canJump([3,2,1,0,4]))
