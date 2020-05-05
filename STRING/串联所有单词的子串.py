@@ -134,3 +134,97 @@
 #     }
 #     return res;
 # }
+
+# 解法一
+
+class Solution:
+    def findSubstring(self,s,words):
+        res = []
+        wordNum = len(words)
+        if wordNum == 0:
+            return res
+        wordLen = len(words[0])
+        # HashMap1 存所有单词
+        allWords = {}
+        for w in words:
+            value = allWords.get(w,0)
+            allWords[w] = value + 1
+        # 遍历所有子串
+        for i in range(len(s) - wordNum * wordLen + 1):
+            # HashMap2 存当前扫描的字符串含有的单词
+            hasWords = {}
+            num = 0
+            # 判断该子串是否复合
+            while num < wordNum:
+                word = s[i + num * wordLen,i + (num + 1) * wordLen]
+                # 判断该单词在 HashMap1 中
+                if word in allWords:
+                    value = hasWords.get(word,0)
+                    hasWords[word] = value + 1
+                    # 判断当前单词的 value和 HashMap1 中该单词的 value
+                    if hasWords[word] > allWords[word]:
+                        break
+                else:
+                    break
+                num += 1
+            if num == wordNum:
+                res.append(i)
+        return res
+
+
+# 解法二
+
+class Solution:
+    def findSubstring(self,s,words):
+        res = []
+        wordNum = len(words)
+        if wordNum == 0:
+            return res
+        wordLen = len(words[0])
+        # HashMap1 存所有单词
+        allWords = {}
+        for w in words:
+            value = allWords.get(w,0)
+            allWords[w] = value + 1
+        # 将所有移动分成 wordLen 类情况
+        for j in range(wordLen):
+            # HashMap2 存当前扫描的字符串含有的单词
+            hasWords = {}
+            num = 0 #记录当前 HashMap2（这里的 hasWords 变量）中有多少个单词
+            # 每次移动一个单词长度
+            for i in range(j,len(s) - wordNum* wordLen + 1,wordLen):
+                hasRemoved = False # 防止情况三移除后，情况一继续移除
+                while num < wordNum:
+                    word = s[i + num * wordLen,i + (num + 1) * wordLen]
+                    # 判断该单词在 HashMap1 中
+                    if word in allWords:
+                        value = hasWords.get(word,0)
+                        hasWords[word] = value + 1
+                        # 出现情况三，遇到了符合的单词，但是次数超了
+                        if hasWords[word] > allWords[word]:
+                            hasRemoved = True
+                            removeNum = 0
+                            #一直移除单词，直到次数符合
+                            while hasWords[word] > allWords[word]:
+                                firstWord = s[i + removeNum * wordLen, i + (removeNum + 1) * wordLen]
+                                v = hasWords[firstWord]
+                                hasWords[firstWord] = v - 1
+                                removeNum += 1
+                            num = num - removeNum + 1 # 加 1 是因为我们把当前单词加入了 HashMap 2 中
+                            i += (removeNum - 1) * wordLen # 这里依旧是考虑到了最外层的 for 循环,看情况二的解释
+                            break
+                    else:
+                        hasWords = {}
+                        i = i + num * wordLen
+                        num = 0
+                        break
+                    num += 1
+                if num == wordNum:
+                    res.append(i)
+                # 出现情况一，子串完全匹配，我们将上一个子串的第一个单词从 HashMap2 中移除
+                if num >0 and not hasRemoved:
+                    firstWord = s[i,i + wordLen]
+                    v = hasWords[firstWord]
+                    hasWords[firstWord] = v - 1
+                    num -= 1
+        return res
