@@ -12,7 +12,6 @@
 # 每次迭代到 cur，都将 cur 的 next 指向 pre，然后 pre 和 cur 前进一位。
 # 都迭代完了(cur 变成 null 了)，pre 就是最后一个节点了。
 
-
 #JAVA
 # class Solution {
 #         public ListNode reverseList(ListNode head) {
@@ -32,6 +31,21 @@
 #                 return pre;
 #         }
 # }
+class Solution:
+    def reverseList(self,head):
+        # 申请节点，pre 和 cur,pre 指向 None
+        pre = None
+        cur = head
+        tmp = None
+        while cur != None :
+            # 记录当前节点的下一个节点, 放在tmp里面
+            tmp = cur.next
+            # 然后将当前节点指向 pre
+            cur.next = pre
+            # pre和cur节点都前进一位
+            pre = cur
+            cur = tmp
+        return pre
 
 #递归解法
 # 这题有个很骚气的递归解法，递归解法很不好理解，这里最好配合代码和动画一起理解。
@@ -61,6 +75,11 @@
 #                 return cur;
 #         }
 # }
+
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
 #同样是递归，换种形式表达。
 from typing import List

@@ -9,7 +9,6 @@
 # 输入: 1->1->1->2->3
 # 输出: 2->3
 #
-#
 # 思路一: 迭代 快慢指针,用快指针跳过那些有重复数组,慢指针负责和快指针拼接!
 # Definition for singly-linked list.
 class ListNode:
@@ -26,14 +25,14 @@ class Solution:
         slow = dummy
         fast = dummy.next
         while fast:
-            if  fast.next and fast.next.val == fast.val:
-                tmp = fast.val
+            if fast.next and fast.next.val == fast.val:
+                tmp = fast.val # 把这个重复元素拿出来，链表里面凡是跟他一样的全部干掉
                 while fast and tmp == fast.val:
                     fast = fast.next
             else:
                 slow.next = fast
-                slow = fast
-                fast = fast.next
+                slow = fast # slow替换为fast，自己指向自己
+                fast = fast.next # fast跑到下一个位置
         slow.next = fast
         return dummy.next
 

@@ -18,8 +18,8 @@ class Solution:
     def partition(self, head: ListNode, x: int) -> ListNode:
         dummy1 = ListNode(-1)
         dummy2 = ListNode(-1)
-        p1 = dummy1
-        p2 = dummy2
+        p1 = dummy1 # p1专门用来放小于x的节点
+        p2 = dummy2 # p2专门用来放大于等于x的节点
         while head:
             if head.val < x:
                 p1.next = head
@@ -33,4 +33,3 @@ class Solution:
         p1.next = dummy2.next
         p2.next = None
         return dummy1.next
-

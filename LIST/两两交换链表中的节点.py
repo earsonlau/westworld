@@ -13,9 +13,9 @@ class Solution:
     def swapPairs(self, head: ListNode) -> ListNode:
         thead = ListNode(-1)
         thead.next = head
-        c = thead
-        while c.next and c.next.next:
-            a, b=c.next, c.next.next
+        c = thead # c指向头结点
+        while c.next and c.next.next:# 第1个位置和第二个位置
+            a, b=c.next, c.next.next# a是前面那个位置的节点，b是后面那个位置的节点
             c.next, a.next = b, b.next
             b.next = a
             c = c.next.next

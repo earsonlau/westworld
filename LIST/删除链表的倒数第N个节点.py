@@ -44,8 +44,6 @@ class ListNode:
         self.val = x
         self.next = None
 
-
-
 class Solution:
     def removeNthFromEnd(self,head,n):
         dummyHead = ListNode(0)
@@ -54,7 +52,7 @@ class Solution:
         q = dummyHead
         for i in range(n+1):
             q = q.next
-        while(q):
+        while q:
             p = p.next
             q = q.next
         delNode = p.next
