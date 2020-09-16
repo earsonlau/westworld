@@ -1,5 +1,6 @@
 # 1.
 # a b c d 是四个0-9的数字 输出所有使得 abcd+cadb = 9102 的 abcd 数字
+#string
 def plus_to_get_9102_v1():
     res = []
     for a in range(10):
@@ -34,6 +35,7 @@ def plus_to_get_9102_v2():
 # 输入：
 # 第一行为n代表输入的组数
 # 下面几行代表几对数组
+#string
 def sum_is_reverse():
     # print("Enter your content,ctrl+D to save")
     # contents = []
@@ -73,7 +75,36 @@ def reverse(n):
 # 公司发礼品 有n件商品价值为a1 a2... an的不同商品  员工有200元的额度 请问共有多少种搭配
 # 输入：3 代表3个商品 继续输入(150,100,50)代表价值
 # 输出：4
+#dp
+# coin change problem.
+# Returns the count of ways we can sum
+# S[0...m-1] coins to get sum n
+def count(s, m, n ):
+    # If n is 0 then there is 1
+    # solution (do not include any coin)
+    if (n == 0):
+        return 1
 
+    # If n is less than 0 then no
+    # solution exists
+    if (n < 0):
+        return 0;
+
+    # If there are no coins and n
+    # is greater than 0, then no
+    # solution exist
+    if (m <=0 and n >= 50):
+        return 0
+
+    # count is sum of solutions (i)
+    # including S[m-1] (ii) excluding S[m-1]
+
+    return count( s, m - 1, n ) + count( s, m, n-s[m-1] )
+
+# Driver program to test above function
+arr = [50, 100, 150]
+m = len(arr)
+print(count(arr, m, 200))
 
 # Given weights and values of n items,
 # put these items in a knapsack of capacity W to get the maximum total value in the knapsack.
@@ -83,7 +114,6 @@ def reverse(n):
 # find out the maximum value subset of val[]
 # such that sum of the weights of this subset is smaller than or equal to W.
 # You cannot break an item, either pick the complete item or don’t pick it (0-1 property).
-
 
 # A Dynamic Programming based Python
 # Program for 0-1 Knapsack problem
@@ -145,37 +175,6 @@ def reverse(n):
 # print(fib_dp(9))
 
 # Recursive Python3 program for
-# coin change problem.
-
-# Returns the count of ways we can sum
-# S[0...m-1] coins to get sum n
-def count(s, m, n ):
-
-	# If n is 0 then there is 1
-	# solution (do not include any coin)
-	if (n == 0):
-		return 1
-
-	# If n is less than 0 then no
-	# solution exists
-	if (n < 0):
-		return 0;
-
-	# If there are no coins and n
-	# is greater than 0, then no
-	# solution exist
-	if (m <=0 and n >= 50):
-		return 0
-
-	# count is sum of solutions (i)
-	# including S[m-1] (ii) excluding S[m-1]
-
-	return count( s, m - 1, n ) + count( s, m, n-s[m-1] )
-
-# Driver program to test above function
-arr = [50, 100, 150]
-m = len(arr)
-print(count(arr, m, 200))
 
 # This code is contributed by Smitha Dinesh Semwal
 # Since same suproblems are called again, this problem has Overlapping Subprolems property.
