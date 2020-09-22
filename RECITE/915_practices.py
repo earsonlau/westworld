@@ -464,74 +464,140 @@ def get_max(nums):
 #     return res
 # print(getint('12345'))
 
-# 27. 写一个函数squeeze(s1,s2),它删去字符串s1中与字符串s2中任意字符相匹配的字符。
-def squeeze(s1,s2):
-    res = ''
-    for i in s1:
-        if i not in s2:
-          res+= i
-        else:
-            continue
-    return res
-print(squeeze('1213','12'))
-
-# 28. 用指针的方法实现三个字符串的排序输出，排序的规则是：按字符比较ascii码。
-def cmp_2str(s1,s2):
-    len_cmp = min(len(s1),len(s2))
-    for i in range(len_cmp):
-        if s1[i] == s2[i]:
-            continue
-        elif s1[i]>s2[i]:
-            return 1
-        else:
-            return 2
-    if len(s1) >= len(s2):
-        return 1
-    else :
-        return 2
-def sort_string(s1,s2,s3):
-    #拆成两个函数cmp和sort来写。
-    res = []
-    if cmp_2str(s1,s2)  == 1 and cmp_2str(s1,s3) == 1 :
-        res.append(s1)
-        if cmp_2str(s2,s3) == 1:
-            #s1>s2>s3
-            res.append(s2)
-            res.append(s3)
-        else:
-            #s1>s3>s2
-            res.append(s3)
-            res.append(s2)
-
-    if cmp_2str(s2,s1)  == 1 and cmp_2str(s2,s3) == 1 :
-        res.append(s2)
-        if cmp_2str(s1,s3) == 1:
-            #s2>s1>s3
-            res.append(s1)
-            res.append(s3)
-        else:
-            #s2>s3>s1
-            res.append(s3)
-            res.append(s1)
-
-
-    if cmp_2str(s3, s1) == 1 and cmp_2str(s3, s2) == 1:
-        res.append(s3)
-        if cmp_2str(s1, s2) == 1:
-            # s3>s1>s2
-            res.append(s1)
-            res.append(s2)
-        else:
-            # s3>s2>s1
-            res.append(s2)
-            res.append(s1)
-    return res
-# 29. 有一个字符串，包含n个字符。写一个函数，将此字符串中从第m个字符开始的全部字符复制成为另一个字符串。
+# # 27. 写一个函数squeeze(s1,s2),它删去字符串s1中与字符串s2中任意字符相匹配的字符。
+# def squeeze(s1,s2):
+#     res = ''
+#     for i in s1:
+#         if i not in s2:
+#           res+= i
+#         else:
+#             continue
+#     return res
+# # print(squeeze('1213','12'))
+#
+# # 28. 用指针的方法实现三个字符串的排序输出，排序的规则是：按字符比较ascii码。
+# def cmp_2str(s1,s2):
+#     len_cmp = min(len(s1),len(s2))
+#     for i in range(len_cmp):
+#         if s1[i] == s2[i]:
+#             continue
+#         elif s1[i]>s2[i]:
+#             return 1
+#         else:
+#             return 2
+#     if len(s1) >= len(s2):
+#         return 1
+#     else :
+#         return 2
+# def sort_string(s1,s2,s3):
+#     #拆成两个函数cmp和sort来写。
+#     res = []
+#     if cmp_2str(s1,s2)  == 1 and cmp_2str(s1,s3) == 1 :
+#         res.append(s1)
+#         if cmp_2str(s2,s3) == 1:
+#             #s1>s2>s3
+#             res.append(s2)
+#             res.append(s3)
+#         else:
+#             #s1>s3>s2
+#             res.append(s3)
+#             res.append(s2)
+#
+#     if cmp_2str(s2,s1)  == 1 and cmp_2str(s2,s3) == 1 :
+#         res.append(s2)
+#         if cmp_2str(s1,s3) == 1:
+#             #s2>s1>s3
+#             res.append(s1)
+#             res.append(s3)
+#         else:
+#             #s2>s3>s1
+#             res.append(s3)
+#             res.append(s1)
+#
+#
+#     if cmp_2str(s3, s1) == 1 and cmp_2str(s3, s2) == 1:
+#         res.append(s3)
+#         if cmp_2str(s1, s2) == 1:
+#             # s3>s1>s2
+#             res.append(s1)
+#             res.append(s2)
+#         else:
+#             # s3>s2>s1
+#             res.append(s2)
+#             res.append(s1)
+#     return res
+# # 29. 有一个字符串，包含n个字符。写一个函数，将此字符串中从第m个字符开始的全部字符复制成为另一个字符串。
+# def copy_from_m(s,m):
+#     return s[m:]
+#     pass
 
 # 30. 用指针数组和指向指针的指针的方法实现对10个字符串的排序，输出结果
-
+# pass
 # 31. 编写函数实现自己的strcat(), 实现两个字符串的合并。
-
+def strcat(s1,s2):
+    return s1+s2
 # 32. 定义一个结构体变量（包括年月日），计算该日在本年是第几天。注意闰年的问题。
-
+# class ymd:
+#     def __init__(self,year,month,day):
+#         self.year = year
+#         self.month = month
+#         self.day = day
+#     def calculate(self):
+#         month_day_list_not_run = []
+#         montH_day_list_run = []
+#         if self.year % 400 == 0:#is run year
+#             #use run table
+#             #use non run table
+#             pass
 # 33. 使用结构体数组存放三个学生的学号、姓名、性别和三门单科成绩。输出总分最高的学生以及有一科及以上不及格的学生的各项数据
+class students:
+    def __init__(self,stu_no,name,gender):
+        self.stu_no = stu_no
+        self.name = name
+        self.gender = gender
+
+    def get_score(self,chinese,math,english):
+        self.chinese = chinese
+        self.math = math
+        self.english = english
+
+    def get_total_score(self):
+        self.total = self.chinese + self.math + self.english
+        return self.total
+
+    def get_min_score(self):
+        self.min_socre = min(self.chinese,self.math,self.english)
+        return self.min_socre
+
+def get_max_ts_student(stus):
+    max = stus[0].get_total_score()
+    stu = stus[0]
+    for i in stus:
+        if i.get_total_score() > max :
+            max = i.get_total_score()
+            stu = i
+    return stu
+
+def get_fail_student(stus):
+    fail_guys= []
+    for i in stus:
+        if i.get_min_score() < 60:
+            fail_guys.append(i)
+    print('Guys who failed in course:')
+    for j in fail_guys:
+        print("student_no:",j.stu_no,",name:",j.name,", total_score:",j.get_total_score(),", min_score:",j.get_min_score())
+
+
+
+tom = students(1,'tom','m')
+tom.get_score(80,100,100)
+jerry = students(2,'jerry','m')
+jerry.get_score(99,99,99)
+doggie = students(3,'doggie','m')
+doggie.get_score(38,98,98)
+stus = [tom,jerry,doggie]
+# nerd = get_max_ts_student(stus)
+# print(stus[0].name)
+# print(stus[1].english)
+# print('Guy who get max total score is ',nerd.name,', with',nerd.get_total_score())
+get_fail_student(stus)
