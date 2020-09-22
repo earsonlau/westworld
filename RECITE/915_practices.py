@@ -393,19 +393,19 @@ def get_max(nums):
 #
 # print(reverse_num(12340))
 # 23. 设计下面两个函数：
-#     1. 函数readoctal()，读入八进制序列，转十进制正整数
-def readoctal(num):
-    if num <0:
-        return '-'+readoctal(abs(num))
-    # num0,remainder = divmod(num,8)
-    # res = num0*10+remainder
-    # return res
-    num = str(num)
-    sum = 0
-    for i in range(len(num)):
-        sum += int(num[len(num) - 1 - i]) * pow(8, i)
-    return sum
-print(readoctal(13))
+# #     1. 函数readoctal()，读入八进制序列，转十进制正整数
+# def readoctal(num):
+#     if num <0:
+#         return '-'+readoctal(abs(num))
+#     # num0,remainder = divmod(num,8)
+#     # res = num0*10+remainder
+#     # return res
+#     num = str(num)
+#     sum = 0
+#     for i in range(len(num)):
+#         sum += int(num[len(num) - 1 - i]) * pow(8, i)
+#     return sum
+# print(readoctal(13))
 
 #     2. 函数writeoctal(), 将十进制正整数转换成相应的八进制数字序列，并打印出来
 
@@ -420,20 +420,118 @@ print(readoctal(13))
 #         if num == 0:
 #             return ''.join(l[::-1])  # 反转输出
 # 24. 编程实现查找字符串s2在字符串s1中第一次出现的位置，若找到则返回位置，否则返回0
-def find_string(s1,s2):
-    for i in s2:
-        if i == s1[0]:
-
+# def find_string(s1,s2):
+    #暴力匹配
+#     offset= 0
+#     for i in range(len(s1)-len(s2)+1):
+#         if s1[i] == s2[0]:
+#             offset = i
+#             for j in range(1,len(s2)):
+#                 if s1[i+j] != s2[j]:
+#                     break
+#                 continue
+#             if j == len(s2)-1:
+#                 return offset
+#         continue
+#     return -1
+# print(find_string("hello","ll"))
 # 25. 函数expand(s,t) 在把字符串s复制到字符串t时，将其中的换行符和制表符转换成可见的转义字符，即用\n表示换行符，用\t表示制表符，用指针实现。
+# def expand(s,t):
+#     #naive copy
+#     # for i in range(len(s)):
+#     #     t+=s[i]
+#     # return t
+#     #smart copy
+#     for i in range(len(s)):
+#         if s[i] == '\n':
+#             t += '\\'
+#             t += 'n'
+#             continue
+#         elif s[i] == '\t':
+#             t += '\\'
+#             t += 't'
+#             continue
+#         else :
+#             t += s[i]
+#             continue
+#     return t
+# print(expand("abc\n",""))
 # 26. 写一个函数getint，它把输入的一串数字字符转换为整数。
-# def getint():
-
-
+# def getint(str):
+#     res = 0
+#     for i in range(len(str)):
+#         res += int(str[i])*(10**(len(str)-1-i))
+#     return res
+# print(getint('12345'))
 
 # 27. 写一个函数squeeze(s1,s2),它删去字符串s1中与字符串s2中任意字符相匹配的字符。
+def squeeze(s1,s2):
+    res = ''
+    for i in s1:
+        if i not in s2:
+          res+= i
+        else:
+            continue
+    return res
+print(squeeze('1213','12'))
+
 # 28. 用指针的方法实现三个字符串的排序输出，排序的规则是：按字符比较ascii码。
+def cmp_2str(s1,s2):
+    len_cmp = min(len(s1),len(s2))
+    for i in range(len_cmp):
+        if s1[i] == s2[i]:
+            continue
+        elif s1[i]>s2[i]:
+            return 1
+        else:
+            return 2
+    if len(s1) >= len(s2):
+        return 1
+    else :
+        return 2
+def sort_string(s1,s2,s3):
+    #拆成两个函数cmp和sort来写。
+    res = []
+    if cmp_2str(s1,s2)  == 1 and cmp_2str(s1,s3) == 1 :
+        res.append(s1)
+        if cmp_2str(s2,s3) == 1:
+            #s1>s2>s3
+            res.append(s2)
+            res.append(s3)
+        else:
+            #s1>s3>s2
+            res.append(s3)
+            res.append(s2)
+
+    if cmp_2str(s2,s1)  == 1 and cmp_2str(s2,s3) == 1 :
+        res.append(s2)
+        if cmp_2str(s1,s3) == 1:
+            #s2>s1>s3
+            res.append(s1)
+            res.append(s3)
+        else:
+            #s2>s3>s1
+            res.append(s3)
+            res.append(s1)
+
+
+    if cmp_2str(s3, s1) == 1 and cmp_2str(s3, s2) == 1:
+        res.append(s3)
+        if cmp_2str(s1, s2) == 1:
+            # s3>s1>s2
+            res.append(s1)
+            res.append(s2)
+        else:
+            # s3>s2>s1
+            res.append(s2)
+            res.append(s1)
+    return res
 # 29. 有一个字符串，包含n个字符。写一个函数，将此字符串中从第m个字符开始的全部字符复制成为另一个字符串。
+
 # 30. 用指针数组和指向指针的指针的方法实现对10个字符串的排序，输出结果
+
 # 31. 编写函数实现自己的strcat(), 实现两个字符串的合并。
+
 # 32. 定义一个结构体变量（包括年月日），计算该日在本年是第几天。注意闰年的问题。
+
 # 33. 使用结构体数组存放三个学生的学号、姓名、性别和三门单科成绩。输出总分最高的学生以及有一科及以上不及格的学生的各项数据
