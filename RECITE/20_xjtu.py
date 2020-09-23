@@ -82,24 +82,24 @@ def reverse(n):
 def count(s, m, n ):
     # If n is 0 then there is 1
     # solution (do not include any coin)
+    #要凑的钱数是0，一个币都不给是一种方法，返回1种方法
     if (n == 0):
         return 1
-
     # If n is less than 0 then no
     # solution exists
+    #要凑的钱是负数，而币都是正数，莫得办法，返回0种方法
     if (n < 0):
         return 0;
-
     # If there are no coins and n
     # is greater than 0, then no
     # solution exist
+    #你的币种已经被减到没有了，但是还想凑钱，没得凑，返回0种方法
     if (m <=0 and n >= 50):
         return 0
-
-    # count is sum of solutions (i)
-    # including S[m-1] (ii) excluding S[m-1]
-
-    return count( s, m - 1, n ) + count( s, m, n-s[m-1] )
+    # count is sum of solutions (i)including S[m-1] (ii) excluding S[m-1]
+    # count(s,m,n-s[m-1])的意思是说，结果里面包含了s[m-1]这个币，所以结果里面使用的币种有m种
+    # count(s,m-1,n)的意思说，结果里面没有包含s[m-1]这个币，所以结果里面使用的币种有m-1种
+    return count(s, m, n-s[m-1]) + count(s, m - 1, n)
 
 # Driver program to test above function
 arr = [50, 100, 150]
