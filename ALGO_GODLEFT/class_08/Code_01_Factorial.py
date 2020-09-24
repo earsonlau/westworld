@@ -1,3 +1,4 @@
+#斐波那契数列
 class Code_01_Factorial:
     def get_factorial1(self,n):
         if n == 1 :

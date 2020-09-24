@@ -1,3 +1,4 @@
+#打印所有子序列
 class Solution:
     #处理方式1：递归，起点是空字符串，每次决策是否要在结果加上str[i]
     def printAllSubString(self,str,i,res):
