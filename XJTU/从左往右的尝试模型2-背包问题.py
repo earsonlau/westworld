@@ -2,8 +2,8 @@
 #weights[i]和values[i]分别代表i号物品的重量和价值(all >0)
 #给一个正数bag，表示一个载重为bag的袋子
 #你装的物品不能超过载重，问能装下的最大价值
-w = [3,2,4,7]
-v = [5,6,3,19]
+w = [2,4,7]
+v = [6,3,19]
 
 def bag1(w,v,bag_):
     return process(w,v,0,0,bag_)
@@ -57,21 +57,20 @@ def process(w,v,index,rest):
     return max(p1,p2)
 
 
-#不知道为什么写成动态规划后结果就变了。。代码没看出来哪里写错。。
 def dpway(w,v,bag_):
     N = len(w)
-    dp = [[0]*(bag_+1)]*(N+1)
+    dp = [[0 for i in range(bag_+1)] for j in range(N+1)]
     for index in range(N-1, -1, -1):
-        for rest in range(0,bag_+1):
+        for rest in range(0, bag_+1):
             # 有货也有空间
             # 不要index号货物所产生的价值记为p1
             p1 = dp[index + 1][rest]
             # 要index号货物所产生的价值记为p2
             p2 = -1
             if rest - w[index] >= 0:
-                p2 = v[index] + dp[index + 1][rest - w[index]]
+                p2 = v[index] + dp[index+1][rest - w[index]]
             dp[index][rest] = max(p1, p2)
     return dp[0][bag_]
 
-print(bag2(w,v,11))
-print(dpway(w,v,11))
+print(bag2(w,v,12))
+print(dpway(w,v,12))
