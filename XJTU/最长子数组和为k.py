@@ -1,7 +1,6 @@
-testcase = [1,1,1,1,1,2,3,4,5]
-#给一个值5和testcase，
-# 1.期望返回5
-# 2.期望返回[1,1,1,1,1]
+testcase = [1,1,1,-1,1,2,3,4,5]
+#给一个值5和testcase[1,1,1,-1,1,2,3,4,5]，
+# 1.期望返回(6, [1, 1, 1, -1, 1, 2])
 def sum_to_k(k,arr):
     if len(arr) == 0 :
         return 0
@@ -9,7 +8,6 @@ def sum_to_k(k,arr):
     sum_ = 0
     len_ = 0
     res = {}
-    res_arr=[]
     res[0] = -1 #因为从0开始到索引指示位置的长度等于索引-(-1) 故res的key为0时value为-1
     #如果不写这一个，那么位置0开始的长度永远会被忽略
     for i in range(len(arr)):
