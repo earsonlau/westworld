@@ -10,6 +10,8 @@
 # 1,1,5 → 1,5,1
 #
 
+# 思路：
+
 #交换nums的i，j位置的元素
 def swap(nums, i, j):
     tmp = nums[i]
