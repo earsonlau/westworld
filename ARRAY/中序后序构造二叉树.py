@@ -18,6 +18,13 @@
 #
 #  Related Topics 树 深度优先搜索 数组
 
+"""
+思路:
+后序遍历是左-右-根，因此postorder[-1]一定是整个树的根。
+由于题目说明了没有重复元素，因此我们可以通过val去inorder找到根在inorder中的索引i。
+所以左子树的中序遍历序列是inorder[:i],右子树的中序遍历序列是inorder[i+1:](inorder[i]是根节点)
+左子树的后序遍历序列是postorder[:i],右子树的后序遍历序列是postorder[i:-1](postorder[-1]=是根节点)
+"""
 
 from typing import List
 
@@ -28,7 +35,7 @@ class TreeNode(object):
         self.right = None
 
 class Solution:
-    def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
+    def buildTree(self, inorder: List[int], postorder: List[int])  :
         # 实际上inorder 和 postorder一定是同时为空的，因此你无论判断哪个都行
         if not inorder:
             return None
