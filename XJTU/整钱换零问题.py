@@ -77,7 +77,7 @@ def ways4(arr,aim):
     return dp[0][aim]
 arr = [10,50,100]
 aim = 1000
-print(ways(arr,aim))
-print(memoryways(arr,aim))
-print(ways3(arr,aim))
-print(ways4(arr,aim))
+# print(ways(arr,aim))
+# print(memoryways(arr,aim))
+# print(ways3(arr,aim))
+# print(ways4(arr,aim))
