@@ -95,14 +95,84 @@ def climbstair5(N,p):
     dp = [None]*(N+1)
     dp[0] = 1
     dp[1] = p[1]
-    path = []
+    path = set()
     for i in range(2,N+1):
         dp[i] = min(dp[i-1],dp[i-2]) + p[i]
-        if dp[i-1] < dp[i-2]:
-            path.append(i-1)
+        if dp[i-1] <= dp[i-2]:
+            path.add(i-1)
         else:
-            path.append(i-2)
-    path.append(N)
+            path.add(i-2)
+    path.add(N)
     return path
-print(climbstair5(3,[0,1,2,3]))
-#
+# print(climbstair5(8,[0,3,2,4,6,1,1,5,3]))
+
+#版本六：机器人走路 (0,0) -> (m,n) 只能向右或向下走一步
+def robot_walk_unique_paths(m,n):
+    dp = [[0 for i in range(n+1)] for j in range(m+1)]
+    dp[0][0] = 1
+    for i in range(m):
+        for j in range(n):
+            if i > 0 and j > 0 :
+                dp[i][j] = dp[i-1][j] + dp[i][j-1]
+            elif i > 0 and j == 0:
+                dp[i][j] = dp[i-1][j]
+            elif j > 0 and i == 0:
+                dp[i][j] = dp[i][j-1]
+    return dp[m-1][n-1]
+# print(robot_walk_unique_paths(1,1))
+
+# 版本七：有路障，二维数组里面的1为路障，0为没有路障
+
+def robot_walk_unique_paths_with_obstacles(grid):
+    m = len(grid)
+    n = len(grid[0])
+    dp = [[0 for i in range(n+1)] for j in range(m+1)]
+    dp[0][0] = 1
+    for i in range(m):
+        for j in range(n):
+            if grid[i][j] == 1 :
+                dp[i][j] = 0
+                continue
+            if i > 0 and j > 0 :
+                dp[i][j] = dp[i-1][j] + dp[i][j-1]
+            elif i > 0 and j == 0:
+                dp[i][j] = dp[i-1][j]
+            elif j > 0 and i == 0:
+                dp[i][j] = dp[i][j-1]
+    return dp[m-1][n-1]
+# print(robot_walk_unique_paths_with_obstacles([[0,0,0,0],[0,0,1,1],[0,0,0,0]]))
+
+
+# 版本八：每个位置有金币，获取最多金币
+def robot_walk_unique_paths_max_profit(grid):
+    m = len(grid)
+    n = len(grid[0])
+    dp = [[0 for i in range(n+1)] for j in range(m+1)]
+    for i in range(m):
+        for j in range(n):
+            dp[i][j] = grid[i][j]
+            if i > 0 and j > 0 :
+                dp[i][j] += max(dp[i-1][j], dp[i][j-1])
+            elif i > 0 and j == 0:
+                dp[i][j] += dp[i-1][j]
+            elif j > 0 and i == 0:
+                dp[i][j] += dp[i][j-1]
+    return dp[m-1][n-1],getpath(dp,m-1,n-1,[])
+
+def getpath(dp, i, j, path):
+    if i == 0 and j == 0:
+        path.append((i, j))
+        return path
+    if i > 0 and j > 0:
+        if dp[i - 1][j] > dp[i][j - 1]:
+            getpath(dp, i - 1, j, path)
+        else:
+            getpath(dp, i, j - 1, path)
+    elif j == 0:
+        getpath(dp, i- 1, j, path)
+    elif i == 0:
+        getpath(dp, i, j - 1, path)
+    path.append((i, j))
+    return path
+
+print(robot_walk_unique_paths_max_profit([[0,2,2,50],[3,1,1,100],[4,4,2,0]]))

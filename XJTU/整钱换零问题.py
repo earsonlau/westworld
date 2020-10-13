@@ -51,8 +51,6 @@ def ways3(arr,aim):
     N = len(arr)
     # map = {} # key:"index_rest",value:方法数
     dp = [[0 for i in range(aim + 1)] for j in range(len(arr) + 1)]
-    arr = [50,10,100]
-    aim = 1000
     dp[N][0] = 1 #你取的东西已经来到N位置，那么只有说不需要其他面值了才有可能是1不然都是0
     for index in range(N-1,-1,-1):
         for rest in range(0,aim+1):
@@ -69,8 +67,6 @@ def ways4(arr,aim):
     N = len(arr)
     # map = {} # key:"index_rest",value:方法数
     dp = [[0 for i in range(aim + 1)] for j in range(len(arr) + 1)]
-    arr = [50,10,100]
-    aim = 1000
     dp[N][0] = 1 #你取的东西已经来到N位置，那么只有说不需要其他面值了才有可能是1不然都是0
     for index in range(N-1,-1,-1):
         for rest in range(0,aim+1):
