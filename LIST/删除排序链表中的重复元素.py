@@ -10,6 +10,8 @@
 # 输出: 1->2->3
 #
 
+# 思路：
+
 #双指针
 class ListNode:
     def __init__(self, x):

@@ -16,6 +16,7 @@
 # 输出: [-1,-1]
 #  Related Topics 数组 二分查找
 
+# 思路：
 
 class Solution(object):
     def searchRange(self, nums, target):

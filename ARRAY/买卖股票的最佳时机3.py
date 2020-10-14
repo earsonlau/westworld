@@ -27,6 +27,9 @@
 # 解释: 在这个情况下, 没有交易完成, 所以最大利润为 0。
 #  Related Topics 数组 动态规划
 
+#思路：
+
+
 def maxProfit_k_2(prices):
     dp_i10 = 0
     dp_i11 = -float("inf")

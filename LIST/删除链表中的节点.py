@@ -4,7 +4,7 @@
 #     def __init__(self, x):
 #         self.val = x
 #         self.next = None
-
+# 思路：
 class Solution:
     def deleteNode(self, node):
         """

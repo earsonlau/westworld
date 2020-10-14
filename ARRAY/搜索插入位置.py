@@ -27,6 +27,7 @@
 #
 #  Related Topics 数组 二分查找
 
+# 思路:
 
 #二分就完事了~
 class Solution:

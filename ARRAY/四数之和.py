@@ -20,6 +20,7 @@
 
 #这个代码输出的结果不对
 
+# 思路：
 def FourSum(nums,target):
     n=len(nums)
     if(not nums or n<3):

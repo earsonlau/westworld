@@ -18,14 +18,8 @@
 # 向右旋转 4 步: 2->0->1->NULL
 #
 
-#
-# class ListNode {
-#     int val;
-#     ListNode next;
-#
-#     ListNode(int x) {
-#         val = x;
-#     }
+
+# 思路：
 
 
 class LNode:

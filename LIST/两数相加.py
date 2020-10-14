@@ -1,3 +1,5 @@
+# 思路：
+
 #一遍哈希表
 def twosum(nums, target):
     res = {}

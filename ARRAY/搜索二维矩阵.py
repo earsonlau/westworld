@@ -25,6 +25,9 @@
 
 #这波啊，这波是二分查找！
 
+# 思路:
+
+
 class Solution:
     def searchMatrix(self,matrix,target):
         m = len(matrix)

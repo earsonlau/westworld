@@ -40,7 +40,9 @@
 # ]
 from typing import List
 
-#思路1
+# 思路1：
+
+
 # class Solution:
 #     def rotate(self,matrix:List[List[int]]) -> None:
 #         """
@@ -67,7 +69,11 @@ from typing import List
 # ]
 # a.rotate(matrix)
 
-#思路2
+#思路2：
+
+
+
+
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
         """

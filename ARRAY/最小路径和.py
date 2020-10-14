@@ -13,6 +13,7 @@
 # 输出: 7
 # 解释: 因为路径 1→3→1→1→1 的总和最小。
 
+# 思路:
 # 动态规划
 class Solution:
     def minPathSum(self, grid: [[int]]) -> int:

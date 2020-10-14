@@ -7,6 +7,7 @@
 #
 #  Related Topics 数组 双指针
 
+# 思路:
 def threeSum(nums, target):
     n = len(nums)
     if (not nums or n < 3):

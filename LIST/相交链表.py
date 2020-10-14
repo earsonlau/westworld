@@ -2,8 +2,6 @@
 # 思路：若相交，链表A： a+c, 链表B : b+c. a+c+b+c = b+c+a+c 。则会在公共处c起点相遇。
 # 若不相交，a +b + null = b+a +null 。因此相遇处是NULL。
 #
-#
-
 class Solution:
     def getIntersectionNode(self, headA, headB):
         if headA is None or headB is None:

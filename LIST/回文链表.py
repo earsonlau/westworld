@@ -6,7 +6,7 @@
 # 输入: 1->2->2->1
 # 输出: true
 #
-
+# 思路：
 class ListNode:
     def __init__(self, x):
         self.val = x

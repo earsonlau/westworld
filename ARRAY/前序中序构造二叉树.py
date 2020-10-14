@@ -15,6 +15,9 @@
 #     /  \
 #    15   7
 #
+#
+#思路：
+
 class TreeNode(object):
     def __init__(self,x):
         self.val = x
