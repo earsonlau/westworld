@@ -28,7 +28,10 @@
 #  Related Topics 数组 双指针
 
 # 思路：
-
+# 搞两个指针，
+# 如果出现了重复元素 (nums[j)==nums[i]) :
+# i不动，j负责去后面找一个不同的元素来覆盖i后一位的元素
+# 如果没有出现重复元素 两个指针一起动
 
 #双指针法
 def removeDuplicates(nums):

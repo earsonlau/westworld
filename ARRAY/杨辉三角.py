@@ -14,9 +14,9 @@
 # ]
 #  Related Topics 数组
 
+# 思路见注释：
 
 def yanghui(numRows):
-
     # 创建一个二维列表
     triangle = [[]]
 

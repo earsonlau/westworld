@@ -8,6 +8,8 @@
 #  Related Topics 数组 双指针
 
 # 思路:
+# 1.排序
+# 2.双指针遍历 求和太大右指针左移 求和太小左指针右移 有重复要跳过
 def threeSum(nums, target):
     n = len(nums)
     if (not nums or n < 3):
@@ -35,7 +37,7 @@ def threeSum(nums, target):
                     L = L + 1  # 左指针右移一格
                     print("L: ", L)
                 while (L < R and nums[R] == nums[R - 1]):  # 右指针和前一位置有重复
-                    R = R - 1  # 右指针前移一格
+                    R = R - 1  # 右指针左移一格
                     print("R: ", R)
             if (sum > target):
                 R = R - 1  # nums[R]太大，右指针左移
