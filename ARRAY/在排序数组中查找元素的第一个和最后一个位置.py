@@ -17,6 +17,13 @@
 #  Related Topics 数组 二分查找
 
 # 思路：
+# 有序数组的带边界限制的二分查找问题
+# 要写两个函数，函数left_bound搜索左边界 right_bound搜索右边界
+# 注意：
+# 1.left_bound的mid位置数字跟所找数字匹配时，不要返回mid，而要把right更新为mid-1进入下一轮循环
+# 1.1 循环结束后要判断left是否越界/left所指向位置是否为所找数字
+# 2.right_bound的mid位置数字跟所找数字匹配时，不要返回mid，而要把left更新为mid+1进入下一轮循环
+# 2.2 循环结束后要判断right是否越界/right所指向位置是否为所找数字
 
 class Solution(object):
     def searchRange(self, nums, target):
@@ -38,6 +45,7 @@ class Solution(object):
         if (left >= len(nums) or nums[left] != target):
             return -1
         return left
+
     #找右边界,二分查找
     def right_bound(self,nums, target) :
         left = 0
