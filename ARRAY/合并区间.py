@@ -19,30 +19,27 @@ class Solution:
     def merge(self,intervals :List[List[int]]):
         if len(intervals) == 0 or len(intervals) == 1: return intervals
         # \\ initialize
-        save = 0
-        scan = 0
-        ans = []
-        # \\ 思路1
+        save = 0 # 用于保留和扩展的指针
+        scan = 0 # 用于扫描的指针
+        ans = [] # 结果集
+        # 对二维数组进行排序
         intervals.sort()
-        # \\ 思路2
+        # 遍历所有的区间
         while scan < len(intervals):
-            if intervals[scan][0] > intervals[save][1]:
-                ans.append(intervals[save])
-        # \\情况一
-                save = scan
-            elif intervals[scan][1] <= intervals[save][1]:
-                scan = scan + 1
-        # \\因为已经排好序了，所以是情况二
+            if intervals[scan][0] > intervals[save][1]: #此时两个区间不相交
+                ans.append(intervals[save]) # save指向的区间压入结果集
+                save = scan # save往前走一步
+                scan = scan + 1 # scan往前走一步
+            elif intervals[scan][1] <= intervals[save][1]: # 此时后一个区间被前一个区间所包含
+                scan = scan + 1 # scan走一步，save不动
             else:
-                # \\情况三
+                # 两个区间相交但不包含 把第一个区间的右端点改为第二个区间的右端点
                 intervals[save][1] = intervals[scan][1]
+                # scan往前走，save不动（save指向的区间变成了这两个区间的合并区间）
                 scan = scan + 1
-        # \\ 思路3
+        # scan已经移动到最后了，直接把save指向的区间压进去
         ans.append(intervals[save])
         return ans
 a = Solution()
-intervals = [
-    [1,4],
-    [4,5]
-]
+intervals =  [[1, 3], [2, 6], [8, 10], [15, 18]]
 print(a.merge(intervals))

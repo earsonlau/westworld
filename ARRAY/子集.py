@@ -1,7 +1,5 @@
 # 给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
-#
 # 说明：解集不能包含重复的子集。
-#
 # 示例:
 #
 # 输入: nums = [1,2,3]
@@ -17,24 +15,13 @@
 #   []
 # ]
 
-import itertools
+
 from typing import List
 
 
+# 思路一: 迭代
+# 暴力穷举所有可能结果
 
-# 思路:
-# 思路一: 库函数
-
-# class Solution:
-#     def subsets(self, nums: List[int]) -> List[List[int]]:
-#         res = []
-#         for i in range(len(nums) + 1):
-#             for tmp in itertools.combinations(nums, i):#返回nums长度为i的子集
-#                 res.append(tmp)
-#         return res
-#
-# # 思路二: 迭代
-#
 # class Solution:
 #     def subsets(self, nums: List[int]) -> List[List[int]]:
 #         res = [[]]
@@ -43,6 +30,9 @@ from typing import List
 #         return res
 
 # 思路三: 递归(回溯算法)
+# 使用递归的思路，从空集开始一步步把元素加进去
+# 每次加到莫得元素可以再加的时候返回上一层
+# 跟深度优先搜索的想法一致（for + 递归调用）
 
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:

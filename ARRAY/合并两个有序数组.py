@@ -16,25 +16,35 @@
 # 思路
 # 标签：从后向前数组遍历
 # 因为 nums1 的空间都集中在后面，所以从后向前处理排序的数据会更好，节省空间，一边遍历一边将值填充进去
-# 设置指针 len1 和 len2 分别指向 nums1 和 nums2 的有数字尾部，从尾部值开始比较遍历，同时设置指针 len 指向 nums1 的最末尾，每次遍历比较值大小之后，则进行填充
-# 当 len1<0 时遍历结束，此时 nums2 中还有数据未拷贝完全，将其直接拷贝到 nums1 的前面，最后得到结果数组
+# 设置指针 last_one_index1 和 last_one_index2 分别指向 nums1 和 nums2 的有数字尾部，
+# 从尾部值开始比较遍历，
+# 同时设置指针 total_index 指向 nums1 的最末尾，每次遍历比较值大小之后，则进行填充
+# 当 last_one_index1<0 时遍历结束，此时 nums2 中还有数据未拷贝完全，
+# 将其直接拷贝到 nums1 的前面，最后得到结果数组
 
 class Solution:
-    def merge(self,nums1,m,nums2,n):
-        len1 = m - 1
-        len2 = n - 1
-        len = m + n - 1
-        while len1 >= 0 and len2 >=0:
-            if nums2[len2] > nums1[len1]:
-                nums1[len] = nums2[len2]
-                len -= 1
-                len2 -= 1
+    def merge(self,nums1,nums1_count,nums2,nums2_count):
+        last_one_index1 = nums1_count - 1
+        last_one_index2 = nums2_count - 1
+        total_index = nums1_count + nums2_count - 1
+        while last_one_index1 >= 0 and last_one_index2 >=0:
+            if nums2[last_one_index2] > nums1[last_one_index1]:
+                #nums1的最末端放上末端位置较大的那个数组的最后一个数
+                nums1[total_index] = nums2[last_one_index2]
+                total_index -= 1
+                last_one_index2 -= 1
+                print(nums1)
             else:
-                nums1[len] = nums1[len1]
-                len -= 1
-                len1 -= 1
-        if len2 + 1 > 0:
-            # 当 len1<0 时遍历结束，此时 nums2 中还有数据未拷贝完全，将其直接拷贝到 nums1 的前面，最后得到结果数组
-            nums1.insert(0,nums2[0:(len2+1)])
+                # nums1的最末端放上末端位置较大的那个数组的最后一个数
+                nums1[total_index] = nums1[last_one_index1]
+                total_index -= 1
+                last_one_index1 -= 1
+                print(nums1)
+        if last_one_index2 + 1 > 0:
+            # 当 last_one_index1<0 时遍历结束，
+            # 此时 nums2 中还有数据未拷贝完全，
+            # 将其直接拷贝到 nums1 的前面，最后得到结果数组
+            nums1.insert(0,nums2[0:(last_one_index2+1)])
+
         return nums1
 print(Solution().merge([1,2,3,0,0,0],3,[2,5,6],3))
