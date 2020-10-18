@@ -26,7 +26,9 @@
 #这波啊，这波是二分查找！
 
 # 思路:
-
+# 直接把矩阵拍成一条,从前到后二分查找
+# index // n 得到是在第几行(纵坐标)
+# index % n 得到是在第几列（横坐标）
 
 class Solution:
     def searchMatrix(self,matrix,target):

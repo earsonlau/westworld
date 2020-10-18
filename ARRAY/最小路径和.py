@@ -15,6 +15,9 @@
 
 # 思路:
 # 动态规划
+# 画一张二维表dp，dp(i,j)表示走到(i,j)位置的最小路径和
+# 因为只能从上面来或者从左边来，这两个方向挑一个路径和最小的（边界特殊处理）
+
 class Solution:
     def minPathSum(self, grid: [[int]]) -> int:
         for i in range(len(grid)):

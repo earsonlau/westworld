@@ -41,25 +41,25 @@
 from typing import List
 
 # 思路1：
+# rotate之后，每一个元素按照一定规律被挪到一个位置，把这个位置关系用代码表达出来即可
 
+class Solution:
+    def rotate(self,matrix:List[List[int]]) -> None:
+        """
+        Do not return anything,modify matrix in-place instead
+        """
+        n = len(matrix)
+        for i in range(n // 2):
+            for j in range(i,n-i-1):
+                print("i:",i,",j:",j)
+                print("matrix[i][j]",matrix[i][j])
+                print("matrix",matrix)
+                # 不能把这个长代码拆成四个语句，因为拆成四个语句每个语句都会面对不同的matrix。
+                # 但是一个长语句会一直面对同一个matrix。
+                matrix[i][j], matrix[j][n - i - 1], matrix[n - i - 1][n - j - 1], matrix[n - j - 1][i] = \
+                    matrix[n - j - 1][i], matrix[i][j], matrix[j][n - i - 1], matrix[n - i - 1][n - j - 1]
+        print(matrix)
 
-# class Solution:
-#     def rotate(self,matrix:List[List[int]]) -> None:
-#         """
-#         Do not return anything,modify matrix in-place instead
-#         """
-#         n = len(matrix)
-#         for i in range(n // 2):
-#             for j in range(i,n-i-1):
-#                 print("i:",i,",j:",j)
-#                 print("matrix[i][j]",matrix[i][j])
-#                 print("matrix",matrix)
-#                 # 不能把这个长代码拆成四个语句，因为拆成四个语句每个语句都会面对不同的matrix。
-#                 # 但是一个长语句会一直面对同一个matrix。
-#                 matrix[i][j], matrix[j][n - i - 1], matrix[n - i - 1][n - j - 1], matrix[n - j - 1][i] = \
-#                     matrix[n - j - 1][i], matrix[i][j], matrix[j][n - i - 1], matrix[n - i - 1][n - j - 1]
-#         print(matrix)
-#
 # a = Solution()
 # matrix = [
 #   [ 5, 1, 9,11],
@@ -70,9 +70,8 @@ from typing import List
 # a.rotate(matrix)
 
 #思路2：
-
-
-
+# 1.先把整个矩阵逆序
+# 2.把(i,j)位置元素换到(j,i)位置，也就是对矩阵做转置
 
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
@@ -85,7 +84,7 @@ class Solution:
         for i in range(0, n):
             for j in range(i+1, n):
                 #print(i, j)
-	                      #按正对角线交换两边的数
+	            #按正对角线交换两边的数
                 matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
 
 a = Solution()
