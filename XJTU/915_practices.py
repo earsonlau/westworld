@@ -18,215 +18,217 @@
 # #    1. 求出是几位数
 # #    2. 分别输出每一位数字
 # #    3. 按逆序输出各位数字，例如原数位123，输出321
-#
-# def reverse_output(num):
+
+# def reverse_output():
+#     num = input("plz input an int num (<100000):")
 #     #求位数
-#     count =len(str(num))
+#     count =len(num)
 #     print("bit count:",count)
 #     #求每位数字'
+#     num = int(num)
 #     list1 = []
 #     for i in range(count):
-#         list1.append(num%10)
+#         list1.append(num % 10)
 #         num = num // 10
-#     print("every single bit:",list1)
+#     print("every single bit:",list1[::-1])
 #     #逆序输出
 #     res = ""
 #     for i in list1:
 #         res += str(i)
 #     print("reverse print",res)
-# # reverse_output(123)
-#
+# reverse_output()
+
 # # 3. 编写程序，将20个数读入计算机，并统计出其中正数、负数和零的个数。
-# def count_pos_neg_zeros():
-#     nums = []
-#     i = 0
-#     while(1):
-#         if i == 5:
-#             break
-#         print("please input the ",i,"th number:")
-#         elem = input()
-#         if elem.lstrip('-').replace('.','',1).isdigit():
-#             nums.append(elem)
-#             i += 1
-#             continue
-#         else:
-#             print("plz input a num!")
-#             continue
-#     print(nums)
-#     pos_count = 0
-#     neg_count = 0
-#     zero_count = 0
-#     for i in nums:
-#         if float(i) > 0:
-#             pos_count += 1
-#             continue
-#         elif float(i) < 0:
-#             neg_count += 1
-#             continue
-#         zero_count += 1
-#     print("正数个数：",pos_count)
-#     print("负数个数：", neg_count)
-#     print("零个数：", zero_count)
-# # count_pos_neg_zeros()
+def count_pos_neg_zeros():
+    nums = []
+    i = 0
+    while(1):
+        if i == 5:
+            break
+        print("please input the ",i,"th number:")
+        elem = input()
+        if elem.lstrip('-').replace('.','',1).isdigit():#去掉负号和点号之后判断是否为数字
+            nums.append(elem)
+            i += 1
+            continue
+        else:
+            print("plz input a num!")
+            continue
+    print(nums)
+    pos_count = 0
+    neg_count = 0
+    zero_count = 0
+    for i in nums:
+        if float(i) > 0:
+            pos_count += 1
+            continue
+        elif float(i) < 0:
+            neg_count += 1
+            continue
+        zero_count += 1
+    print("正数个数：",pos_count)
+    print("负数个数：", neg_count)
+    print("零个数：", zero_count)
+# count_pos_neg_zeros()
 #
 # # 4. 打印所有的水仙花数
-#
-# def narcissus():
-#     print("输出所有的水仙花数")
-#     for i in range(100001):
-#         temp = i
-#         sum = 0
-#         bit_count = len(str(i))
-#         while temp:
-#             sum += (temp % 10) ** bit_count #每位数字都求以该数字的总位数为幂的乘方结果
-#             temp //= 10 #从个位数取到第一位
-#         if sum == i: #满足水仙花数的定义
-#             print(i,end=' ')
-#     return 1
-# # narcissus()
-#
+
+def narcissus():
+    print("输出所有的水仙花数")
+    for i in range(100001):
+        temp = i
+        sum = 0
+        bit_count = len(str(i))
+        while temp:
+            sum += (temp % 10) ** bit_count #每位数字都求以该数字的总位数为幂的乘方结果
+            temp //= 10 #从个位数取到第一位
+        if sum == i: #满足水仙花数的定义
+            print(i,end=' ')
+    return 1
+# narcissus()
+
 # # 5. 将一组数据存放在一维数组中，并排序，从键盘输入一个数，要求按原顺序将它插入到数组合适的位置上
-# def insert_num():
-#     array1 = [1,3,2,5,4]
-#     array1.sort()
-#     while(1):
-#         num = input("plz input a number:")
-#         if not num.lstrip('-').replace('.', '', 1).isdigit():
-#             print("plz input a number!")
-#             continue
-#         break
-#     num = int(num)
-#     # print(num)
-#     # print(array1[0])
-#     if num < array1[0]:
-#         array1.insert(0,num)
-#         print(array1)
-#         return 1
-#     if num > array1[len(array1)-1]:
-#         array1.insert(len(array1), num)
-#         print(array1)
-#         return 1
+def insert_num():
+    array1 = [1,3,2,5,4]
+    array1.sort()
+    while(1):
+        num = input("plz input a number:")
+        if not num.lstrip('-').replace('.', '', 1).isdigit():
+            print("plz input a number!")
+            continue
+        break
+    num = int(num)
+    # print(num)
+    # print(array1[0])
+    if num < array1[0]:
+        array1.insert(0,num)
+        print(array1)
+        return 1
+    if num > array1[len(array1)-1]:
+        array1.insert(len(array1), num)
+        print(array1)
+        return 1
+
+    for i in array1:
+        if num > i:
+            print("no good")
+            continue
+        else:
+            array1.insert(array1.index(i),num)
+            break
+    return 1
 #
-#     for i in array1:
-#         if num > i:
-#             print("no good")
-#             continue
-#         else:
-#             array1.insert(array1.index(i),num)
-#             break
-#     return 1
-#
-# # insert_num()
-# # 6. 输入一串字符串，以"$"结束，分别统计其中数字字符0,1,2,...,9出现的次数。
-# def count_nums():
-#     str1 = input("input a string of number and end with $:")
-#     print(str1)
-#     list1 = []
-#     for i in range(10):
-#         list1.append(0)
-#     for i in str1:
-#         if i == '$':
-#             break
-#         list1[int(i)] += 1
-#     for i in range(len(list1)):
-#         print(i,list1[i])
-# # count_nums()
-#
-# # 7. 输入一串字符串，以"$"结束，分别统计其中大写字母出现的次数，并按字母出现的次数输出
-# def count_nums():
-#     str1 = input("input a string of char and end with $:")
-#     print(str1)
-#     #用字典
-#     dict1 = {}
-#     for i in str1:
-#         if i == '$':
-#             break
-#         if 'A' <= i <= 'Z':
-#             if i in dict1.keys():
-#                 dict1[i] += 1
-#             else:
-#                 dict1[i] = 1
-#     print(dict1)
-#     return 1
-# # count_nums()
-#
+# insert_num()
+# 6. 输入一串字符串，以"$"结束，分别统计其中数字字符0,1,2,...,9出现的次数。
+def count_nums():
+    str1 = input("input a string of number and end with $:")
+    print(str1)
+    list1 = []
+    for i in range(10):
+        list1.append(0)
+    for i in str1:
+        if i == '$':
+            break
+        list1[int(i)] += 1
+    for i in range(len(list1)):
+        print(i,":",list1[i])
+# count_nums()
+
+# 7. 输入一串字符串，以"$"结束，分别统计其中大写字母出现的次数，并按字母出现的次数输出
+def count_nums():
+    str1 = input("input a string of char and end with $:")
+    print(str1)
+    #用字典
+    dict1 = {}
+    for i in str1:
+        if i == '$':
+            break
+        if 'A' <= i <= 'Z':
+            if i in dict1.keys():
+                dict1[i] += 1
+            else:
+                dict1[i] = 1
+    print(dict1)
+    return 1
+# count_nums()
+
 # # 8. 用筛选法求100以内的素数
-# def primes(n):
-#     #生成2到n之间的所有整数
-#     numbers = set(range(2,n))
-#     #最大数的平方根，以及小于该数字的所有素数
-#     m = int(n ** 0.5) + 1
-#     prime_less_than_m = [p for p in range(2,m)
-#                          if 0 not in [ p%d for d in range(2,int(p**0.5) + 1 )]]
-#     #遍历最大整数平方根之内的所有素数
-#     for p in prime_less_than_m:
-#         for i in range(2,n // p + 1):
-#             #干掉p的倍数
-#             numbers.discard(i*p)
-#     return numbers
-# # print(primes(1000))
+def primes(n):
+    #生成2到n之间的所有整数
+    numbers = set(range(2,n))
+    #最大数的平方根，以及小于该数字的所有素数
+    m = int(n ** 0.5) + 1
+    prime_less_than_m = [p for p in range(2,m)
+                         if 0 not in [ p % d for d in range(2,int(p**0.5) + 1 )]]
+    #遍历最大整数平方根之内的所有素数
+    for p in prime_less_than_m:
+        for i in range(2,n // p + 1):
+            #干掉p的倍数
+            numbers.discard(i*p)
+    return numbers
+# print(primes(1000))
 #
 # # 9. 用冒泡或选排对20个数据进行排序后输出，并给出每个元素原来的位置
-# def bb_sort_nums(nums):
-#     #bubble sort
-#     I = []
-#     for i in range(len(nums)):
-#         I.append(i)
-#     for i in range (len(nums)):
-#         for j in range(len(nums)-1,i,-1):#j移动的方向和要和i相反才能实现后面的小数字冒泡冒到前面
-#             if nums[j] < nums[j-1]:
-#                 nums[j-1],nums[j] = nums[j],nums[j-1]
-#                 I[j-1],I[j] = I[j],I[j-1]
-#     print("sorted result:",nums)
-#     print("original index",I)
-#     return 1
-# # nums = [1, 17, 19, 23, 29, 31, 2, 5, 7, 11, 1, 3, 37, 41, 43, 47]
-# # bb_sort_nums(nums)
-#
-# #选排
-# def select_sort_nums(nums):
-#     I = []
-#     for i in range(len(nums)):
-#         I.append(i)
-#     for i in range(len(nums)):
-#         min = i
-#         for j in range(i+1,len(nums)):
-#            if (nums[j] < nums[min]):
-#                min = j
-#         if (min != i):
-#             t = nums[i]
-#             nums[i] = nums[min]
-#             nums[min] = t
-#             I[i],I[min] = I[min],I[i]
-#     print("sorted result:",nums)
-#     print("original index",I)
-#     return 1
-#
-# # nums = [1, 17, 19, 23, 29, 31, 2, 5, 7, 11, 1, 3, 37, 41, 43, 47]
-# # select_sort_nums(nums)
-#
+def bb_sort_nums(nums):
+    #bubble sort
+    I = []
+    for i in range(len(nums)):
+        I.append(i)
+    for i in range (len(nums)):
+        for j in range(len(nums)-1,i,-1):#j移动的方向和要和i相反才能实现后面的小数字冒泡冒到前面
+            if nums[j] < nums[j-1]:
+                nums[j-1],nums[j] = nums[j],nums[j-1]
+                I[j-1],I[j] = I[j],I[j-1]
+    print("sorted result:",nums)
+    print("original index",I)
+    return 1
+# nums = [1, 17, 19, 23, 29, 31, 2, 5, 7, 11, 1, 3, 37, 41, 43, 47]
+# bb_sort_nums(nums)
+
+#选排
+def select_sort_nums(nums):
+    I = [] # I是index
+    for i in range(len(nums)):
+        I.append(i)
+    for i in range(len(nums)):
+        min = i
+        for j in range(i+1,len(nums)):
+           if (nums[j] < nums[min]):
+               min = j
+        if (min != i):
+            t = nums[i]
+            nums[i] = nums[min]
+            nums[min] = t
+            I[i],I[min] = I[min],I[i]
+    print("sorted result:",nums)
+    print("original index",I)
+    return 1
+
+nums = [1, 17, 19, 23, 29, 31, 2, 5, 7, 11, 1, 3, 37, 41, 43, 47]
+select_sort_nums(nums)
+
 # # 10. 把20个元素读入数组，找最大值和最小值并输出值与下标。最后将数组各元素按从大到小重新排列，输出。
-# def sort_sunny(nums):
-#     max = nums[0]
-#     min = nums[0]
-#     max_index = 0
-#     min_index = 0
-#     for i in range(len(nums)):
-#         if nums[i] > max:
-#             max = nums[i]
-#             max_index = i
-#         if nums[i] < min:
-#             min = nums[i]
-#             min_index = i
-#     print("max:",max,"index:",max_index)
-#     print("min:",min,"index:",min_index)
-#
-#
-#     for i in range (len(nums)):
-#         for j in range(len(nums)-1,i,-1):#j移动的方向和要和i相反才能实现后面的小数字冒泡冒到前面
-#             if nums[j] > nums[j-1]:
-#                 nums[j-1],nums[j] = nums[j],nums[j-1]
-#     print("sorted result:",nums)
+def sort_sunny(nums):
+    max = nums[0]
+    min = nums[0]
+    max_index = 0
+    min_index = 0
+    for i in range(len(nums)):
+        if nums[i] > max:
+            max = nums[i]
+            max_index = i
+        if nums[i] < min:
+            min = nums[i]
+            min_index = i
+    print("max:",max,"index:",max_index)
+    print("min:",min,"index:",min_index)
+
+
+    for i in range (len(nums)):
+        for j in range(len(nums)-1,i,-1):#j移动的方向和要和i相反才能实现后面的小数字冒泡冒到前面
+            if nums[j] > nums[j-1]:
+                nums[j-1],nums[j] = nums[j],nums[j-1]
+    print("sorted result:",nums)
 #
 # # nums = [1, 17, 19, 23, 29, 31, 2, 5, 7, 11, 1, 3, 37, 41, 43, 47]
 # # sort_sunny(nums)
@@ -292,17 +294,17 @@
 #     return 1
 #
 # # 17. 编写一个函数，输入一个十进制数，输出相应的二进制、八进制、十六进制数。
-#
-# def dec2bin(num):
-#     # dec2bin
-#     l = []
-#     if num < 0:
-#         return '-' + dec2bin(abs(num))
-#     while(1):
-#         num,remainder = divmod(num,2)#模2，取一下余数并更新num为原来的1/2
-#         l.append(str(remainder))#把余数存起来
-#         if num == 0 :
-#             return ''.join(l[::-1])#反转输出
+
+def dec2bin(num):
+    # dec2bin
+    l = []
+    if num < 0:
+        return '-' + dec2bin(abs(num))
+    while(1):
+        num,remainder = divmod(num,2)#模2，取一下余数并更新num为原来的1/2
+        l.append(str(remainder))#把余数存起来
+        if num == 0 :
+            return ''.join(l[::-1])#反转输出
 #
 # def dec2oct(num):
 #     # dec2oct
@@ -310,24 +312,24 @@
 #     if num < 0:
 #         return '-' + dec2oct(abs(num))
 #     while (1):
-#         num, remainder = divmod(num, 8)  # 模2，取一下余数并更新num为原来的1/2
+#         num, remainder = divmod(num, 8)  # 模8，取一下余数并更新num为原来的1/8
 #         l.append(str(remainder))  # 把余数存起来
 #         if num == 0:
 #             return ''.join(l[::-1])  # 反转输出
 #
-#
-# base = [str(x) for x in range(9)] + [chr(x) for x in range(ord('A'), ord('A') + 6)]
-# def dec2hex(num):
-# # dec2hex
-#     l = []
-#     if num < 0:
-#         return '-' + dec2hex(abs(num))
-#     while (1):
-#         num, remainder = divmod(num, 16)  # 模2，取一下余数并更新num为原来的1/2
-#         l.append(base[remainder])  # 把余数存起来
-#         if num == 0:
-#             return ''.join(l[::-1])  # 反转输出
-#
+
+base = [str(x) for x in range(9)] + [chr(x) for x in range(ord('A'), ord('A') + 6)]
+def dec2hex(num):
+# dec2hex
+    l = []
+    if num < 0:
+        return '-' + dec2hex(abs(num))
+    while (1):
+        num, remainder = divmod(num, 16)  # 模2，取一下余数并更新num为原来的1/2
+        l.append(base[remainder])  # 把余数存起来
+        if num == 0:
+            return ''.join(l[::-1])  # 反转输出
+
 #
 # def dec_to_bin_oct_hex(num):
 #     print('bin:', dec2bin(num))
@@ -344,31 +346,29 @@
 # # print(cal_n_step_product(3))
 #
 # # 19. 写个函数，输出数n从右边开始的第k个数字的值
-# def kth_num_from_right(n,k):
-#     if k >= len(str(n)):
-#         print("k is too large!")
-#         return 0
-#     for i in range(k):
-#         res = n % 10
-#         n = n // 10
-#     return print(res)
-# kth_num_from_right(1234567,4)
-#
+def kth_num_from_right(n,k):
+    if k >= len(str(n)):
+        print("k is too large!")
+        return 0
+    for i in range(k):
+        res = n % 10
+        n = n // 10
+    return print(res)
+kth_num_from_right(1234567,4)
+
 #
 # # 20. 写个回答星期几的函数。函数三个参分别为年月日，输出“星期__”
-# def what_the_day():
-#     import calendar
-#     from calendar import *
-#     import datetime
-#     y = input('请输入年份')
-#     m = input('请输入月份')
-#     d = input('请输入日')
-#     lis = ['星期一','星期二','星期三','星期四','星期五','星期六','星期日',]
-#     dic = dict(enumerate(lis))
-#     if y.isdigit() and m.isdigit() and d.isdigit() and 1<=int(m)<=12 and 1<=int(d)<=31 :
-#         w = weekday(int(y),int(m),int(d))
-#         print(dic[w])
-
+def what_the_day():
+    from calendar import *
+    y = input('请输入年份')
+    m = input('请输入月份')
+    d = input('请输入日')
+    lis = ['星期一','星期二','星期三','星期四','星期五','星期六','星期日',]
+    dic = dict(enumerate(lis))
+    if y.isdigit() and m.isdigit() and d.isdigit() and 1<=int(m)<=12 and 1<=int(d)<=31 :
+        w = weekday(int(y),int(m),int(d))
+        print(dic[w])
+print(what_the_day())
 # 21. 求给定5个数的最大值
 def get_max(nums):
     max = nums[0]
@@ -534,70 +534,70 @@ def get_max(nums):
 # 30. 用指针数组和指向指针的指针的方法实现对10个字符串的排序，输出结果
 # pass
 # 31. 编写函数实现自己的strcat(), 实现两个字符串的合并。
-def strcat(s1,s2):
-    return s1+s2
-# 32. 定义一个结构体变量（包括年月日），计算该日在本年是第几天。注意闰年的问题。
-# class ymd:
-#     def __init__(self,year,month,day):
-#         self.year = year
-#         self.month = month
-#         self.day = day
-#     def calculate(self):
-#         month_day_list_not_run = []
-#         montH_day_list_run = []
-#         if self.year % 400 == 0:#is run year
-#             #use run table
-#             #use non run table
-#             pass
-# 33. 使用结构体数组存放三个学生的学号、姓名、性别和三门单科成绩。输出总分最高的学生以及有一科及以上不及格的学生的各项数据
-class students:
-    def __init__(self,stu_no,name,gender):
-        self.stu_no = stu_no
-        self.name = name
-        self.gender = gender
-
-    def get_score(self,chinese,math,english):
-        self.chinese = chinese
-        self.math = math
-        self.english = english
-
-    def get_total_score(self):
-        self.total = self.chinese + self.math + self.english
-        return self.total
-
-    def get_min_score(self):
-        self.min_socre = min(self.chinese,self.math,self.english)
-        return self.min_socre
-
-def get_max_ts_student(stus):
-    max = stus[0].get_total_score()
-    stu = stus[0]
-    for i in stus:
-        if i.get_total_score() > max :
-            max = i.get_total_score()
-            stu = i
-    return stu
-
-def get_fail_student(stus):
-    fail_guys= []
-    for i in stus:
-        if i.get_min_score() < 60:
-            fail_guys.append(i)
-    print('Guys who failed in course:')
-    for j in fail_guys:
-        print("student_no:",j.stu_no,",name:",j.name,", total_score:",j.get_total_score(),", min_score:",j.get_min_score())
-
-
-
-tom = students(1,'tom','m')
-tom.get_score(80,100,100)
-jerry = students(2,'jerry','m')
-jerry.get_score(99,99,99)
-doggie = students(3,'doggie','m')
-doggie.get_score(38,98,98)
-stus = [tom,jerry,doggie]
-# nerd = get_max_ts_student(stus)
-# print(stus[0].name)
-# print(stus[1].english)
-# print('Guy who get max total score is ',nerd.name,', with',nerd.get_total_score())
-get_fail_student(stus)
+# def strcat(s1,s2):
+#     return s1+s2
+# # 32. 定义一个结构体变量（包括年月日），计算该日在本年是第几天。注意闰年的问题。
+# # class ymd:
+# #     def __init__(self,year,month,day):
+# #         self.year = year
+# #         self.month = month
+# #         self.day = day
+# #     def calculate(self):
+# #         month_day_list_not_run = []
+# #         montH_day_list_run = []
+# #         if self.year % 400 == 0:#is run year
+# #             #use run table
+# #             #use non run table
+# #             pass
+# # 33. 使用结构体数组存放三个学生的学号、姓名、性别和三门单科成绩。输出总分最高的学生以及有一科及以上不及格的学生的各项数据
+# class students:
+#     def __init__(self,stu_no,name,gender):
+#         self.stu_no = stu_no
+#         self.name = name
+#         self.gender = gender
+#
+#     def get_score(self,chinese,math,english):
+#         self.chinese = chinese
+#         self.math = math
+#         self.english = english
+#
+#     def get_total_score(self):
+#         self.total = self.chinese + self.math + self.english
+#         return self.total
+#
+#     def get_min_score(self):
+#         self.min_socre = min(self.chinese,self.math,self.english)
+#         return self.min_socre
+#
+# def get_max_ts_student(stus):
+#     max = stus[0].get_total_score()
+#     stu = stus[0]
+#     for i in stus:
+#         if i.get_total_score() > max :
+#             max = i.get_total_score()
+#             stu = i
+#     return stu
+#
+# def get_fail_student(stus):
+#     fail_guys= []
+#     for i in stus:
+#         if i.get_min_score() < 60:
+#             fail_guys.append(i)
+#     print('Guys who failed in course:')
+#     for j in fail_guys:
+#         print("student_no:",j.stu_no,",name:",j.name,", total_score:",j.get_total_score(),", min_score:",j.get_min_score())
+#
+#
+#
+# tom = students(1,'tom','m')
+# tom.get_score(80,100,100)
+# jerry = students(2,'jerry','m')
+# jerry.get_score(99,99,99)
+# doggie = students(3,'doggie','m')
+# doggie.get_score(38,98,98)
+# stus = [tom,jerry,doggie]
+# # nerd = get_max_ts_student(stus)
+# # print(stus[0].name)
+# # print(stus[1].english)
+# # print('Guy who get max total score is ',nerd.name,', with',nerd.get_total_score())
+# get_fail_student(stus)

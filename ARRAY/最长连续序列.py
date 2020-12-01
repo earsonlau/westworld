@@ -43,6 +43,19 @@ def longestConsecutive(nums):
 #  可以考虑在max[dp[j]]的最大值加上当前nums[i]的长度
 #  dp[i]=max(dp[i],dp[j]+1)此为状态转移方程
 
+# f[i]表示以i结尾的最长上升子序列长度
+import numpy
+def findNumberOfLIS(nums):
+    if (nums == None or len(nums) == 0): return 0
+    n = len(nums)
+    f = numpy.ones(n)
+    for i in range(1,n):
+        for j in range(i):
+            if (nums[i] > nums[j]): # 每一个以j结尾的可行的子序列的求解是该问题的一个子问题
+                f[i] = max(f[j] + 1, f[i])  #在所有子问题里面找到一个最大的解
+    return f.max()
+print(findNumberOfLIS([100, 4, 200, 1, 3, 2]))
+
 # dp[i]表示以i结尾的最长上升子序列长度
 import numpy
 def findNumberOfLIS(nums):
@@ -70,8 +83,27 @@ def findNumberOfLIS(nums):
 print(findNumberOfLIS([100, 4, 200, 1, 3, 2]))
 
 
+# 比较容易看的递归写法
+def findNumOfLIS(nums):
+    n = len(nums)
+    ans = 0
+    f = [0 for k in range(len(nums))]
+    # declare a function.
+    def LIS(nums, r):
+        if r == 0:
+            return 1
+        if f[r] > 0:
+            return f[r]
+        ans = 1
+        for i in range(r):
+            if nums[r] > nums[i]:
+                ans = max(ans, LIS(nums, r) + 1)
+        f[r] = ans
+        return f[r]
+    # declare finish.
 
-
+    for i in range(n-1):
+        ans = max(ans,LIS(nums,i))
 
 
 

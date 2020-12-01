@@ -4,7 +4,7 @@
 # 	find the total number of ways to make a change of size n.
 # 	Transition function: f(n) = f(n-d_1) + f(n-d_2) + f(n-d_3) + ... + f(n-d_k),
 # 	where d_1, d_2, d_3, ..., d_k are provided coin denomations.
-def coinchange(n,coins):
+def coinchange1(n,coins):
     dp = [0]*(n+1)
     dp[0] = 1
     for i in range(n+1):
@@ -16,7 +16,7 @@ def coinchange(n,coins):
                 # 找钱i的方法数+=找钱i-coin的方法数（找钱i-coin完成后再拿出一个coin就凑满了i)
                 dp[i] += dp[i-coin]
     return dp[n]
-# print(coinchange(4,[1,3,5,10]))
+print(coinchange1(200,[50,100,150]))
 
 #
 # Problem2:
@@ -121,5 +121,5 @@ def coinchange4(n,coins):
                     continue
                 dp[i][j] += dp[i-coins[k]][k]
     return dp[n][len(coins)-1]
-print(coinchange4(3,[1,2,3,5]))
+print(coinchange4(200,[50,100,150]))
 

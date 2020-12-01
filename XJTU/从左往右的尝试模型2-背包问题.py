@@ -14,24 +14,24 @@ def bag1(w,v,bag_):
 #0...index-1号货物挑选后背包目前负载为alreadyW
 #如果返回-1 表示没有方案
 #如果不返回-1 则认为返回的东西是真实的价值
-# def process(w,v,index,alreadyW,bag):
-#     if alreadyW > bag:
-#         #背包已满，本次选择无效
-#         return -1
-#     #重量没超
-#     if index == len(w):
-#         #已经放满了，不能再放了，所以index之后的价值为0
-#         return 0
-#     #p1表示我没有拿第index号货物
-#     p1 = process(w,v,index+1,alreadyW,bag)
-#     #p2next表示我拿了第index号货物
-#     p2next = process(w,v,index+1,alreadyW+w[index],bag)
-#     p2 = -1
-#     if p2next != -1 :
-#         #当前货物价值v[index]+后续货物价值p2next为拿了第index号货物的总价值
-#         p2 = v[index]+ p2next
-#     #返回拿/不拿第index号货物的最大价值
-#     return max(p1,p2)
+def process(w,v,index,alreadyW,bag):
+    if alreadyW > bag:
+        #背包已满，本次选择无效
+        return -1
+    #重量没超
+    if index == len(w):
+        #已经放满了，不能再放了，所以index之后的价值为0
+        return 0
+    #p1表示我没有拿第index号货物
+    p1 = process(w,v,index+1,alreadyW,bag)
+    #p2next表示我拿了第index号货物
+    p2next = process(w,v,index+1,alreadyW+w[index],bag)
+    p2 = -1
+    if p2next != -1 :
+        #当前货物价值v[index]+后续货物价值p2next为拿了第index号货物的总价值
+        p2 = v[index]+ p2next
+    #返回拿/不拿第index号货物的最大价值
+    return max(p1,p2)
 
 
 def bag2(w,v,bag_):

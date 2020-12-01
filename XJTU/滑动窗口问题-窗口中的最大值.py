@@ -19,7 +19,7 @@ from _collections import deque
 def getmaxwindow(arr,w):
     if arr is None or len(arr) == 0:
         return None
-    # qmax是一个只存数组下标的双端队列
+    # qmax是一个只存数组下标的双端队列,下标对应数据是单调递减的
     qmax = deque()
     # res是结果集，只放结果
     res = []
@@ -29,7 +29,7 @@ def getmaxwindow(arr,w):
         # 队列从右侧弹出元素
         while len(qmax) != 0 and arr[qmax[-1]] <= arr[i]:
             qmax.pop()
-        # 现在遍历到的数字arr[i]从右侧加入队列，队列从左到右递减
+        # 现在遍历到的数字arr[i]的下标从右侧加入队列，队列从左到右递减
         qmax.append(i)
         # 如果队列最左端数字=现在遍历到的数字的下标 - 窗口长度
         # 说明因为窗口移动，队列最左端的数字过期了，他要弹出，保证窗口内数字个数==窗口长度

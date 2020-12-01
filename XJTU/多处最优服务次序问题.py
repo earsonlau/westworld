@@ -44,25 +44,25 @@
 # time_sum[1] = 5A[1] + 4 A[3] + 3A[5] +2 A[7] + A[9]
 # 第8号顾客被服务结束后，service[0]累计服务了0.2.4.6.8号顾客的时长，time_sum[0]存放第0.2.4.6.8号顾客的等待时长
 # 第9号顾客被服务结束后，service[1]累计服务了1.3.5.7.9号顾客的时长，time_sum[1]存放第1.3.5.7.9号顾客的等待时长
-def service_order(n,s,t):
+def service_order(s,t):
     time_sort = sorted(t)# 所有的服务时间先排个序
     print("Minimum average waiting time:", greedy(time_sort,s))
 
 def greedy(A,s):
     print("排序后的顾客服务时间",A)
-    i = 0
-    j = 0
+    customer = 0
+    barber = 0
     service = [0 for i in range(s)] # 服务点每个顾客的等待时间
     time_sum = [0 for i in range(s)] # 服务点顾客等待的时间总和
-    while (i < len(A)):
-        service[j] += A[i]
-        time_sum[j] += service[j]
-        i += 1
-        j = (j+1) % s   # Arrange the activities of s service points
+    while (customer < len(A)):
+        service[barber] += A[customer]
+        time_sum[barber] += service[barber]
+        customer += 1
+        barber = (barber+1) % s   # Arrange the activities of s service points
 
     t = 0
     for i in range(s):
-        t += time_sum[i]  # 计算所有服务点服务时间总和
+        t += time_sum[i]  # 计算所有服务点被等待时间总和
     return t / len(A)
 
 n = 10

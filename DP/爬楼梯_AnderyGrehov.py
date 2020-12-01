@@ -78,7 +78,7 @@ def climbstair3(N,k,stairs):
                 continue
             if stairs[i-1] == False:
                 dp[i] = 0
-            dp[i] = dp[i-1]+dp[i-2]
+            dp[i] += dp[i-k]
     return dp[N]
 # print(climbstair3(3,2,[False,True,True]))
 # 版本四：一次迈1~2步，每个台阶有一个cost，最小化总的cost
