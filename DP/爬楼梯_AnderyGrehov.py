@@ -64,7 +64,7 @@ def climbstair2(N,k):
         for j in range(1,k):
             if i < k:
                 continue
-            dp[i] += dp[i-k]
+            dp[i] += dp[i-j]
     return dp[N]
 # print(climbstair2(3,2))
 # 版本三：一次迈1~k步，有的台阶不能踩
